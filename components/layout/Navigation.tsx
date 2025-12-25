@@ -12,12 +12,9 @@ import {
   BarChart3, 
   MessageSquare,
   Menu,
-  X,
-  Sun,
-  Moon
+  X
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { useTheme } from '@/components/providers/ThemeProvider'
 
 const navItems = [
   { href: '/', label: 'Accueil', icon: Brain },
@@ -32,7 +29,6 @@ export default function Navigation() {
   const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { isDark, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,7 +60,7 @@ export default function Navigation() {
                 <Brain className="w-6 h-6 text-white" />
               </motion.div>
               <span className="text-xl font-bold gradient-text hidden sm:block">
-                AI Portfolio
+                Portfolio
               </span>
             </Link>
 
@@ -98,22 +94,8 @@ export default function Navigation() {
               })}
             </div>
 
-            {/* Theme Toggle & Mobile Menu */}
+            {/* Mobile Menu Button */}
             <div className="flex items-center gap-2">
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={toggleTheme}
-                className="p-2 rounded-lg hover:bg-white/5 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <Sun className="w-5 h-5 text-yellow-400" />
-                ) : (
-                  <Moon className="w-5 h-5 text-neural-glow" />
-                )}
-              </motion.button>
-
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="md:hidden p-2 rounded-lg hover:bg-white/5 transition-colors"

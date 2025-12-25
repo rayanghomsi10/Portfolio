@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react'
 
 interface ThemeContextType {
   isDark: boolean
@@ -14,36 +14,54 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(true)
   const [matrixMode, setMatrixMode] = useState(false)
-  const [konamiIndex, setKonamiIndex] = useState(0)
+  const konamiIndexRef = useRef(0)
 
-  const konamiCode = [
-    'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-    'KeyB', 'KeyA'
-  ]
+  // Konami Code: ↑↑↓↓←→←→BA
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA']
 
+  // Initialiser le thème depuis localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme')
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const shouldBeDark = savedTheme ? savedTheme === 'dark' : prefersDark
+    
+    setIsDark(shouldBeDark)
+    if (shouldBeDark) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
+
+  // Konami Code listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === konamiCode[konamiIndex]) {
-        const newIndex = konamiIndex + 1
-        setKonamiIndex(newIndex)
+      if (e.code === konamiCode[konamiIndexRef.current]) {
+        konamiIndexRef.current++
         
-        if (newIndex === konamiCode.length) {
-          activateMatrix()
-          setKonamiIndex(0)
+        if (konamiIndexRef.current === konamiCode.length) {
+          setMatrixMode(true)
+          setTimeout(() => setMatrixMode(false), 10000)
+          konamiIndexRef.current = 0
         }
       } else {
-        setKonamiIndex(0)
+        konamiIndexRef.current = 0
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [konamiIndex])
+  }, [])
 
   const toggleTheme = () => {
-    setIsDark(!isDark)
-    document.documentElement.classList.toggle('dark')
+    const newIsDark = !isDark
+    setIsDark(newIsDark)
+    localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
+    if (newIsDark) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
   }
 
   const activateMatrix = () => {
