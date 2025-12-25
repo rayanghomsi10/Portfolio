@@ -28,20 +28,19 @@ const skills: NodeData[] = [
   { id: 'sklearn', label: 'Scikit-learn', category: 'ml', position: [3, -2, -2], color: '#f89939', link: '/skills' },
 ]
 
-function NeuralNode({ node, onHover, isHovered }: { 
+function NeuralNode({ node, onHover, isHovered }: {
   node: NodeData
   onHover: (id: string | null) => void
-  isHovered: boolean 
+  isHovered: boolean
 }) {
   const meshRef = useRef<THREE.Mesh>(null)
   const router = useRouter()
-  const [clicked, setClicked] = useState(false)
 
-  useFrame((state) => {
+  useFrame(() => {
     if (meshRef.current) {
       const scale = isHovered ? 1.3 : 1
       meshRef.current.scale.lerp(new THREE.Vector3(scale, scale, scale), 0.1)
-      
+
       if (isHovered) {
         meshRef.current.rotation.y += 0.02
       }
@@ -49,7 +48,6 @@ function NeuralNode({ node, onHover, isHovered }: {
   })
 
   const handleClick = () => {
-    setClicked(true)
     if (node.link) {
       setTimeout(() => router.push(node.link!), 300)
     }
@@ -129,12 +127,10 @@ function Connections({ nodes, hoveredId }: { nodes: NodeData[], hoveredId: strin
           <bufferGeometry>
             <bufferAttribute
               attach="attributes-position"
-              count={2}
-              array={new Float32Array([
+              args={[new Float32Array([
                 conn.start.x, conn.start.y, conn.start.z,
                 conn.end.x, conn.end.y, conn.end.z
-              ])}
-              itemSize={3}
+              ]), 3]}
             />
           </bufferGeometry>
           <lineBasicMaterial 
@@ -162,7 +158,7 @@ function DataParticles() {
     return pos
   }, [])
 
-  useFrame((state) => {
+  useFrame(() => {
     if (particlesRef.current) {
       particlesRef.current.rotation.y += 0.001
       particlesRef.current.rotation.x += 0.0005
@@ -174,9 +170,7 @@ function DataParticles() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
+          args={[positions, 3]}
         />
       </bufferGeometry>
       <pointsMaterial

@@ -1,21 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
   Radar,
-  LineChart,
-  Line,
   Area,
   AreaChart
 } from 'recharts'
@@ -39,7 +37,7 @@ export default function MetricsChart({ metrics, color, type = 'bar' }: MetricsCh
     fullMark: 100,
   }))
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) => {
     if (active && payload && payload.length) {
       const metric = metrics.find(m => m.name === label)
       return (

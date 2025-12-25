@@ -2,12 +2,11 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { 
-  Mail, 
-  Linkedin, 
-  Github, 
-  MapPin, 
-  Send, 
+import {
+  Mail,
+  Github,
+  MapPin,
+  Send,
   CheckCircle,
   Loader2,
   MessageSquare,

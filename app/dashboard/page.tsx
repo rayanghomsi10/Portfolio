@@ -2,23 +2,18 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { 
-  Users, 
-  Eye, 
-  GitBranch, 
-  Star, 
+import {
+  Users,
+  GitBranch,
+  Star,
   Activity,
   TrendingUp,
   Database,
   Cpu
 } from 'lucide-react'
 import {
-  LineChart,
-  Line,
   AreaChart,
   Area,
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -40,14 +35,6 @@ const generateVisitorData = () => {
     day: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'][i],
     visitors: Math.floor(30 + Math.random() * 70),
     pageViews: Math.floor(60 + Math.random() * 140),
-  }))
-}
-
-const generateGitHubActivity = () => {
-  return Array.from({ length: 12 }, (_, i) => ({
-    month: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'][i],
-    commits: Math.floor(5 + Math.random() * 25),
-    projects: Math.floor(1 + Math.random() * 3),
   }))
 }
 
@@ -112,8 +99,7 @@ function StatCard({ icon: Icon, label, value, change, color }: {
 }
 
 export default function DashboardPage() {
-  const [visitorData, setVisitorData] = useState(generateVisitorData())
-  const [githubData, setGithubData] = useState(generateGitHubActivity())
+  const [visitorData] = useState(generateVisitorData())
   const [liveVisitors, setLiveVisitors] = useState(5)
 
   // Simulate real-time updates

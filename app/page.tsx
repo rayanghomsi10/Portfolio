@@ -3,7 +3,7 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail, FileText, Phone } from 'lucide-react'
+import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 
 const NeuralNetwork = dynamic(() => import('@/components/3d/NeuralNetwork'), {

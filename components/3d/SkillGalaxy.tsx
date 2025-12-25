@@ -1,8 +1,8 @@
 'use client'
 
-import { useRef, useMemo, useState } from 'react'
+import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Float, Html, Stars, Text, Billboard } from '@react-three/drei'
+import { OrbitControls, Float, Html, Stars, Billboard } from '@react-three/drei'
 import * as THREE from 'three'
 
 interface Skill {
@@ -221,9 +221,7 @@ function OrbitRing({ radius, tilt, label }: { radius: number; tilt: number; labe
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={points.length}
-            array={new Float32Array(points.flatMap(p => [p.x, p.y, p.z]))}
-            itemSize={3}
+            args={[new Float32Array(points.flatMap(p => [p.x, p.y, p.z])), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#ffffff" transparent opacity={0.08} />
@@ -245,8 +243,8 @@ function OrbitRing({ radius, tilt, label }: { radius: number; tilt: number; labe
 
 function CentralSun() {
   const meshRef = useRef<THREE.Mesh>(null)
-  
-  useFrame((state) => {
+
+  useFrame(() => {
     if (meshRef.current) {
       meshRef.current.rotation.y += 0.005
     }
