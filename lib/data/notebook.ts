@@ -16,7 +16,7 @@ export const notes: Note[] = [
   {
     project: 'Assistant-RAG',
     tag: 'méthode',
-    text: 'Juge RAGAS de 7B, donc des scores bruités. Chaque version est rejouée sur les mêmes 85 questions et comparée à la précédente, avec IC bootstrap à 95 %.',
+    text: 'Juge RAGAS de 7B, donc des scores bruités. Chaque version est rejouée sur les mêmes 85 questions et comparée à la précédente, avec IC bootstrap à 95 %.',
   },
   {
     project: 'Orange Data AI Factory',

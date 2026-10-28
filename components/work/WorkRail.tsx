@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion'
 import type { Project } from '@/lib/data/projects'
+import Motif from '@/components/universe/Motif'
 
 /*
  * Rail horizontal : le défilement vertical fait glisser les projets de droite à gauche.
@@ -15,8 +16,9 @@ import type { Project } from '@/lib/data/projects'
 const FORMATS: Record<string, string> = {
   'assistant-rag': 'lg:w-[44rem] lg:h-[74vh] lg:self-center',
   'jumeau-numerique-extrudeuse': 'lg:w-[34rem] lg:h-[80vh] lg:self-end',
-  'churn-telecom': 'lg:w-[30rem] lg:h-[56vh] lg:self-start lg:mt-[12vh]',
-  'graph-rag-veille': 'lg:w-[22rem] lg:h-[44vh] lg:self-center',
+  'colorfol-backend': 'lg:w-[30rem] lg:h-[60vh] lg:self-start lg:mt-[8vh]',
+  'graph-rag-veille': 'lg:w-[26rem] lg:h-[52vh] lg:self-end lg:mb-[6vh]',
+  'churn-telecom': 'lg:w-[28rem] lg:h-[50vh] lg:self-start lg:mt-[14vh]',
   'tsa-innovlab': 'lg:w-[24rem] lg:h-[48vh] lg:self-end lg:mb-[8vh]',
 }
 
@@ -26,9 +28,11 @@ function Card({ project, index }: { project: Project; index: number }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group relative flex min-h-[22rem] w-full shrink-0 flex-col justify-between border border-ink bg-paper p-6 transition-colors duration-500 hover:bg-ink hover:text-paper sm:p-8 ${FORMATS[project.slug] ?? 'lg:w-[26rem] lg:h-[50vh]'}`}
+      data-universe={project.universe}
+      className={`group relative flex overflow-hidden min-h-[22rem] w-full shrink-0 flex-col justify-between border border-ink bg-paper p-6 transition-colors duration-500 hover:bg-ink hover:text-paper sm:p-8 ${FORMATS[project.slug] ?? 'lg:w-[26rem] lg:h-[50vh]'}`}
     >
-      <div className="flex items-start justify-between gap-4 font-mono text-[11px] uppercase tracking-wide">
+      <Motif kind={project.universe} className="absolute inset-0 h-full w-full opacity-[0.12] transition-opacity duration-500 group-hover:opacity-30" />
+      <div className="relative flex items-start justify-between gap-4 font-mono text-[11px] uppercase tracking-wide">
         <span>
           <span className="text-accent">{String(index + 1).padStart(2, '0')}</span> / {project.domain}
         </span>
@@ -49,7 +53,7 @@ function Card({ project, index }: { project: Project; index: number }) {
         </div>
       )}
 
-      <div>
+      <div className="relative">
         <h3
           className={`font-serif font-light leading-[0.9] tracking-[-0.03em] transition-transform duration-500 group-hover:translate-x-2 ${big ? 'text-5xl md:text-7xl' : 'text-4xl md:text-5xl'}`}
           style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}
@@ -59,14 +63,16 @@ function Card({ project, index }: { project: Project; index: number }) {
         <p className="mt-4 max-w-md text-sm leading-relaxed opacity-75">{project.summary}</p>
       </div>
 
-      <div className="mt-6 flex items-end justify-between gap-4 border-t border-ink/20 pt-4 group-hover:border-paper/20">
+      <div className="relative mt-6 flex items-end justify-between gap-4 border-t border-ink/20 pt-4 group-hover:border-paper/20">
         {key ? (
           <span>
             <span className={`tabular block font-serif text-accent ${big ? 'text-6xl md:text-7xl' : 'text-4xl'}`}>{key.value}</span>
             <span className="font-mono text-[11px] uppercase tracking-wide opacity-70">{key.label}</span>
           </span>
         ) : (
-          <span className="font-mono text-[11px] uppercase tracking-wide opacity-70">Résultats à venir</span>
+          <span className="font-mono text-[11px] uppercase tracking-wide opacity-70">
+            {project.slug === 'graph-rag-veille' ? 'Résultats confidentiels' : project.stack.slice(0, 3).join(' · ')}
+          </span>
         )}
         <span className="font-mono text-xs uppercase tracking-wide transition-transform duration-500 group-hover:translate-x-1">Lire →</span>
       </div>
@@ -104,10 +110,10 @@ export default function WorkRail({ projects }: { projects: Project[] }) {
       <div>
         <p className="font-mono text-[11px] uppercase tracking-wide text-accent">01 — Travaux</p>
         <h2 className="mt-4 font-serif text-5xl font-light leading-[0.9] tracking-[-0.03em] md:text-6xl" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>
-          Cinq projets, <em>cinq formats.</em>
+          Six projets, <em>six formats.</em>
         </h2>
         <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
-          La taille d’une carte dit le poids du projet. Les chiffres sont mesurés ; les projets en cours le disent.
+          La taille d’une carte dit le poids du projet. Chaque univers a sa couleur. Les chiffres sont mesurés ; ce qui est confidentiel est dit.
         </p>
       </div>
       <p className="mt-8 hidden font-mono text-[11px] uppercase tracking-wide text-muted lg:block">Continuez à défiler →</p>

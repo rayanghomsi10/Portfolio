@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import LensHero from '@/components/hero/LensHero'
+import GraphHero from '@/components/hero/GraphHero'
 import WorkRail from '@/components/work/WorkRail'
 import Notebook from '@/components/work/Notebook'
 import Reveal from '@/components/ui/Reveal'
@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <>
-      <LensHero />
+      <GraphHero />
 
       {/* Manifeste : une phrase, décalée */}
       <section className="mx-auto grid max-w-[90rem] grid-cols-1 gap-8 px-4 py-32 sm:px-8 md:grid-cols-12">

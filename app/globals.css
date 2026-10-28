@@ -9,7 +9,7 @@
   --ink: 26 23 18;
   --muted: 102 95 83;
   --line: 202 193 177;
-  --accent: 196 56 24;
+  --accent: 179 50 26; /* #B3321A : ≈ 5:1 sur le papier, AA pour le petit texte */
   --accent-soft: 240 214 198;
   --signal: 84 90 52;
   --positive: 70 110 48;
@@ -32,6 +32,40 @@
   --raw: 237 232 222;
   --raw-ink: 26 23 18;
   color-scheme: dark;
+}
+
+/* Univers par projet : seule la couleur d'accent change, le reste du système est fixe */
+[data-universe='fragments'] {
+  --accent: 179 50 26; /* #B3321A */
+  --accent-soft: 240 214 198;
+}
+[data-universe='mesh'] {
+  --accent: 47 93 80; /* #2F5D50, ≈ 6:1 */
+  --accent-soft: 214 228 220;
+}
+[data-universe='wave'] {
+  --accent: 138 90 0; /* #8A5A00, ≈ 4,8:1 */
+  --accent-soft: 238 222 190;
+}
+[data-universe='grid'] {
+  --accent: 43 76 111; /* #2B4C6F, ≈ 7:1 */
+  --accent-soft: 212 222 234;
+}
+.dark [data-universe='fragments'] {
+  --accent: 234 98 60;
+  --accent-soft: 62 33 22;
+}
+.dark [data-universe='mesh'] {
+  --accent: 120 186 160;
+  --accent-soft: 24 44 38;
+}
+.dark [data-universe='wave'] {
+  --accent: 226 170 72;
+  --accent-soft: 54 40 16;
+}
+.dark [data-universe='grid'] {
+  --accent: 140 172 214;
+  --accent-soft: 26 36 50;
 }
 
 html {

@@ -25,7 +25,8 @@ const config: Config = {
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'serif'],
-        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        // Deux familles seulement : Fraunces (titres et texte), JetBrains Mono (données)
+        sans: ['var(--font-serif)', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       maxWidth: {

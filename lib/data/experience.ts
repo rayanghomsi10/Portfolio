@@ -6,7 +6,7 @@ export const profile = {
     'Je construis des modèles et des systèmes RAG, puis je mesure s’ils tiennent leurs promesses : jeux d’évaluation, intervalles de confiance, garde-fous. Avant ça, j’ai construit les pipelines de données qui les alimentent, de NiFi à DBT.',
   availability: 'Stage de 6 mois en IA / Data Science à partir d’avril 2027',
   location: 'Les Ulis (91), plateau de Paris-Saclay',
-  email: 'rayan-gabriel.ghomsi-talla@student-cs.fr',
+  email: 'rayanghomsi10@gmail.com',
   phone: '07 59 26 22 72',
   github: 'https://github.com/rayanghomsi10',
   githubHandle: 'rayanghomsi10',
@@ -44,10 +44,12 @@ export const experiences: Experience[] = [
     location: 'Douala',
     period: 'Mai 2025 – avr. 2026',
     points: [
+      'Responsable de l’ensemble du backend de la plateforme.',
       'API REST Django pour le streaming, les playlists et la recommandation musicale.',
       'Bases PostgreSQL et MongoDB.',
     ],
     stack: ['Django', 'PostgreSQL', 'MongoDB'],
+    projectSlug: 'colorfol-backend',
   },
   {
     title: 'Data Engineer / Data Scientist',
@@ -68,8 +70,8 @@ export const experiences: Experience[] = [
     location: 'Nantes',
     period: 'Sept. 2024 – janv. 2025',
     points: [
-      'Jumeau numérique d’une extrudeuse prédisant la qualité du produit en temps réel ; taux de rebut −30 %.',
-      'Régression sur 10 000+ cycles de production, 92 % de précision.',
+      'Jumeau numérique d’une extrudeuse prédisant la qualité du produit en temps réel ; taux de rebut −30 %.',
+      'Régression sur 10 000+ cycles de production, 92 % de précision.',
       'Pipeline NiFi + PostgreSQL sur 20+ capteurs IoT avec alertes.',
     ],
     stack: ['Python', 'XGBoost', 'Random Forest', 'NiFi', 'PostgreSQL'],
