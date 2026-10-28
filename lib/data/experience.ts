@@ -1,141 +1,120 @@
+export const profile = {
+  name: 'Rayan Gabriel Ghomsi Talla',
+  title: 'Data Scientist',
+  focus: 'Machine Learning · IA générative · Évaluation de modèles',
+  pitch:
+    'Je construis des modèles et des systèmes RAG, puis je mesure s’ils tiennent leurs promesses : jeux d’évaluation, intervalles de confiance, garde-fous. Avant ça, j’ai construit les pipelines de données qui les alimentent, de NiFi à DBT.',
+  availability: 'Stage de 6 mois en IA / Data Science à partir d’avril 2027',
+  location: 'Les Ulis (91), plateau de Paris-Saclay',
+  email: 'rayan-gabriel.ghomsi-talla@student-cs.fr',
+  phone: '07 59 26 22 72',
+  github: 'https://github.com/rayanghomsi10',
+  githubHandle: 'rayanghomsi10',
+  linkedin: 'https://www.linkedin.com/in/rayan-ghomsi-talla',
+  linkedinHandle: 'rayan-ghomsi-talla',
+}
+
 export interface Experience {
-  id: string
   title: string
   company: string
   location: string
   period: string
-  type: 'work' | 'education'
-  description: string
-  achievements: string[]
-  technologies: string[]
-  metrics?: {
-    label: string
-    before?: number
-    after: number
-    unit: string
-  }[]
+  points: string[]
+  stack: string[]
+  projectSlug?: string
 }
 
 export const experiences: Experience[] = [
   {
-    id: '1',
+    title: 'Data Engineer stagiaire',
+    company: 'Orange Cameroun, Data AI Factory',
+    location: 'Douala',
+    period: 'Janv. – juin 2026',
+    points: [
+      'Modernisation du Data Lake : déploiement de DBT et Airbyte sur des serveurs RHEL sans accès Internet.',
+      'Suivi automatisé des transactions AFD (Bash, Hive SQL, Python) avec visualisations et rapports HTML envoyés par e-mail.',
+      'Pipeline Airbyte + Airflow vers un entrepôt ClickHouse.',
+      'Benchmark (POC) NiFi, Airbyte et DBT pour choisir l’architecture ELT cible.',
+    ],
+    stack: ['DBT', 'Airbyte', 'Airflow', 'ClickHouse', 'Hive', 'Bash', 'Python', 'RHEL'],
+  },
+  {
+    title: 'Développeur backend freelance (temps partiel)',
+    company: 'Colorfol, streaming musical',
+    location: 'Douala',
+    period: 'Mai 2025 – avr. 2026',
+    points: [
+      'API REST Django pour le streaming, les playlists et la recommandation musicale.',
+      'Bases PostgreSQL et MongoDB.',
+    ],
+    stack: ['Django', 'PostgreSQL', 'MongoDB'],
+  },
+  {
     title: 'Data Engineer / Data Scientist',
     company: 'UCAC-ICAM Yansoki',
-    location: 'Douala, Cameroun',
-    period: 'Mars 2025 - Juin 2025',
-    type: 'work',
-    description: 'Architecture et déploiement d\'un Data Lake télécom end-to-end pour prédire le churn client, avec automatisation complète du pipeline ETL + ML.',
-    achievements: [
-      'Architecturé un Data Lake centralisant 5 sources de données (CRM, logs réseau, facturation, support, usage)',
-      'Traitement de +1 Go de données/jour via Apache NiFi et Sqoop vers HDFS',
-      'Développé un modèle de prédiction du churn (Random Forest, Gradient Boosting) avec F1 score de 0.87',
-      'Identification de 85% des clients à risque avec 3 semaines d\'anticipation',
-      'Automatisé le pipeline ETL + ML avec Airflow (ingestion, transformation Hive, feature engineering, scoring)',
-      'Réduction du temps de traitement de 72 heures à 1 heure',
+    location: 'Douala',
+    period: 'Mars – juin 2025',
+    points: [
+      'Data Lake télécom de 5 sources, plus d’1 Go par jour via NiFi et Sqoop vers HDFS.',
+      'Modèle de churn PySpark sur 10 000+ profils, F1-score de 0,87.',
+      'Pipeline ETL + ML sous Airflow avec réentraînement hebdomadaire ; traitement ramené de 72 h à 12 h.',
     ],
-    technologies: ['PySpark', 'Apache NiFi', 'Airflow', 'HDFS', 'Hive', 'Sqoop', 'Random Forest', 'Gradient Boosting'],
-    metrics: [
-      { label: 'F1-Score', after: 87, unit: '%' },
-      { label: 'Temps traitement', before: 72, after: 1, unit: 'h' },
-      { label: 'Détection risque', after: 85, unit: '%' },
-    ],
+    stack: ['PySpark', 'NiFi', 'Airflow', 'HDFS', 'Hive'],
+    projectSlug: 'churn-telecom',
   },
   {
-    id: '2',
-    title: 'Chercheur Data Science',
+    title: 'Chercheur Data Science (stage de recherche, 5 mois)',
     company: 'ICAM Nantes',
-    location: 'Nantes, France',
-    period: 'Septembre 2024 - Janvier 2025',
-    type: 'work',
-    description: 'Développement d\'un jumeau numérique d\'une extrudeuse de plastique pour prédire la qualité du produit final en temps réel.',
-    achievements: [
-      'Développé un jumeau numérique permettant d\'anticiper les défauts de fabrication avant la production',
-      'Réduction du taux de rebut de 30%',
-      'Conçu et entraîné des modèles de régression avancés (Random Forest, XGBoost, réseaux de neurones)',
-      'Précision de prédiction de 92% sur les paramètres de qualité (viscosité, résistance, homogénéité)',
-      'Déployé un pipeline de données automatisé pour la collecte temps réel de 20+ capteurs IoT',
-      'Mise en place d\'une surveillance continue et d\'alertes proactives',
+    location: 'Nantes',
+    period: 'Sept. 2024 – janv. 2025',
+    points: [
+      'Jumeau numérique d’une extrudeuse prédisant la qualité du produit en temps réel ; taux de rebut −30 %.',
+      'Régression sur 10 000+ cycles de production, 92 % de précision.',
+      'Pipeline NiFi + PostgreSQL sur 20+ capteurs IoT avec alertes.',
     ],
-    technologies: ['Python', 'Random Forest', 'XGBoost', 'Réseaux de neurones', 'Apache NiFi', 'PostgreSQL', 'IoT'],
-    metrics: [
-      { label: 'Précision', after: 92, unit: '%' },
-      { label: 'Réduction rebut', after: 30, unit: '%' },
-      { label: 'Capteurs IoT', after: 20, unit: '+' },
-    ],
-  },
-  {
-    id: '3',
-    title: 'Développeur Full Stack',
-    company: 'Digital Experience',
-    location: 'Akwa, Douala',
-    period: 'Janvier 2024 - Avril 2024',
-    type: 'work',
-    description: 'Conception et développement d\'une plateforme de gestion de cantine d\'entreprise avec système de réservation en ligne.',
-    achievements: [
-      'Réalisé une plateforme complète de gestion de cantine pour entreprise',
-      'Développé un système de réservation en ligne pour les repas avec gestion des créneaux',
-      'Optimisé les performances pour gérer un grand nombre de commandes simultanées',
-      'Collaboré avec l\'équipe marketing pour la promotion de la plateforme',
-      'Formé les utilisateurs finaux pour assurer une adoption efficace',
-    ],
-    technologies: ['Laravel', 'PHP', 'MySQL', 'JavaScript', 'HTML/CSS', 'Bootstrap'],
-    metrics: [
-      { label: 'Utilisateurs formés', after: 50, unit: '+' },
-    ],
-  },
-  {
-    id: '4',
-    title: 'Développeur Web Junior',
-    company: 'Lab2view',
-    location: 'Bonamoussadi, Douala',
-    period: 'Mai 2023 - Juin 2023',
-    type: 'work',
-    description: 'Conception et réalisation d\'une plateforme E-commerce complète avec système de paiement sécurisé.',
-    achievements: [
-      'Conçu et développé une plateforme E-commerce de A à Z',
-      'Intégré un système de paiement en ligne sécurisé (Mobile Money, cartes bancaires)',
-      'Optimisé les performances du site pour une expérience utilisateur fluide',
-      'Mis en place un CMS pour faciliter la gestion et mise à jour du contenu',
-    ],
-    technologies: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'HTML/CSS', 'API Paiement'],
-  },
-  {
-    id: '5',
-    title: 'Ingénierie Informatique - Data Science',
-    company: 'Institut UCAC-ICAM Yansoki',
-    location: 'Douala, Cameroun',
-    period: 'Septembre 2021 - Présent',
-    type: 'education',
-    description: 'Formation d\'ingénieur avec spécialisation en Data Science, Machine Learning et Big Data.',
-    achievements: [
-      'Spécialisation en Intelligence Artificielle et Data Engineering',
-      'Projets pratiques en Machine Learning et Deep Learning',
-      'Formation aux technologies Big Data (Hadoop, Spark, Airflow)',
-      'Développement de compétences en Python, SQL et visualisation de données',
-      'Mobilité internationale à l\'ICAM Nantes (France)',
-    ],
-    technologies: ['Python', 'PySpark', 'TensorFlow', 'Keras', 'PyTorch', 'SQL', 'Hadoop', 'Airflow'],
-  },
-  {
-    id: '6',
-    title: 'Baccalauréat Scientifique (C)',
-    company: 'Collège Les Lauréats Bonamoussadi',
-    location: 'Douala, Cameroun',
-    period: 'Septembre 2012 - Juin 2020',
-    type: 'education',
-    description: 'Baccalauréat série C (Mathématiques et Sciences Physiques).',
-    achievements: [
-      'Formation solide en mathématiques et sciences',
-      'Développement de la pensée analytique',
-      'Base pour les études d\'ingénieur',
-    ],
-    technologies: ['Mathématiques', 'Physique', 'Informatique'],
+    stack: ['Python', 'XGBoost', 'Random Forest', 'NiFi', 'PostgreSQL'],
+    projectSlug: 'jumeau-numerique-extrudeuse',
   },
 ]
 
+export const earlierExperiences = [
+  { title: 'Développeur Full Stack', company: 'Digital Experience', period: 'Janv. – avr. 2024', stack: 'Laravel, MySQL' },
+  { title: 'Développeur web junior', company: 'Lab2view', period: 'Mai – juin 2023', stack: 'Laravel, MySQL' },
+]
+
+export const education = [
+  {
+    degree: 'Mastère Spécialisé Ingénierie des Systèmes Intelligents Ouverts (MS SIO)',
+    school: 'CentraleSupélec',
+    location: 'Gif-sur-Yvette / Palaiseau',
+    period: 'Depuis sept. 2026',
+  },
+  {
+    degree: 'Diplôme d’ingénieur, spécialité Data Science (accrédité CTI)',
+    school: 'UCAC-ICAM',
+    location: 'Douala',
+    period: '2021 – 2026',
+  },
+]
+
+export const skillGroups = [
+  { label: 'Machine Learning / Deep Learning', items: ['Scikit-learn', 'XGBoost', 'TensorFlow', 'Keras', 'PyTorch', 'Dataiku'] },
+  { label: 'Statistiques', items: ['Régression', 'IC par bootstrap', 'Comparaisons appariées'] },
+  { label: 'IA générative', items: ['RAG / Graph-RAG', 'LangChain', 'ChromaDB', 'RAGAS', 'Ollama', 'DPO (TRL, QLoRA)', 'n8n multi-agents'] },
+  { label: 'Big Data & ETL', items: ['Apache NiFi', 'Airflow', 'PySpark', 'Hadoop', 'DBT', 'Airbyte', 'ClickHouse'] },
+  { label: 'MLOps & DevOps', items: ['MLflow', 'Docker', 'GitHub Actions', 'Git', 'Linux RHEL', 'Kerberos'] },
+  { label: 'Langages', items: ['Python', 'SQL', 'Bash', 'JavaScript', 'PHP'] },
+  { label: 'Bases de données', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Hive', 'Elasticsearch'] },
+  { label: 'BI & visualisation', items: ['Power BI', 'Tableau', 'Plotly', 'Superset'] },
+  { label: 'Web & API', items: ['FastAPI', 'Django', 'NestJS', 'Laravel'] },
+]
+
 export const certifications = [
-  { name: 'Introduction to Data Science', issuer: 'Cisco', year: '2024' },
-  { name: 'Data Science Orientation', issuer: 'Coursera', year: '2024' },
-  { name: 'Data Engineering Essentials', issuer: 'Coursera', year: '2024' },
-  { name: 'Développement Web', issuer: 'Udemy', year: '2023' },
+  { name: 'Data Engineering Essentials', issuer: 'Coursera' },
+  { name: 'Développement Web', issuer: 'Udemy' },
+]
+
+export const languages = [
+  { name: 'Français', level: 'Langue maternelle' },
+  { name: 'Anglais', level: 'TOEIC B2' },
 ]

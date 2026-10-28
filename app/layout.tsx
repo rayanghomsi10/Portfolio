@@ -1,38 +1,43 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Fraunces, Inter_Tight, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/layout/Navigation'
-import { ThemeProvider } from '@/components/providers/ThemeProvider'
-import MatrixRain from '@/components/effects/MatrixRain'
+import Footer from '@/components/layout/Footer'
+import { ThemeProvider, themeInitScript } from '@/components/providers/ThemeProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+const serif = Fraunces({ subsets: ['latin'], style: ['normal', 'italic'], axes: ['SOFT', 'WONK', 'opsz'], variable: '--font-serif' })
+const sans = Inter_Tight({ subsets: ['latin'], variable: '--font-sans' })
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  title: 'Rayan GHOMSI TALLA | Data Scientist & IA Engineer',
-  description: 'Portfolio de Rayan Gabriel GHOMSI TALLA - Étudiant ingénieur en Data Science & Intelligence Artificielle. Projets Machine Learning, Deep Learning, modèles prédictifs avec TensorFlow, PyTorch, Scikit-learn.',
-  keywords: ['Data Science', 'Intelligence Artificielle', 'Machine Learning', 'Deep Learning', 'TensorFlow', 'PyTorch', 'Python', 'Portfolio', 'Rayan GHOMSI', 'IA'],
-  authors: [{ name: 'Rayan Gabriel GHOMSI TALLA' }],
+  title: 'Rayan Ghomsi Talla · Data Scientist',
+  description:
+    'Data Scientist en Mastère Spécialisé à CentraleSupélec : Machine Learning, IA générative (RAG, Graph-RAG) et évaluation de modèles. Stage de 6 mois à partir d’avril 2027.',
+  keywords: ['Data Scientist', 'Machine Learning', 'IA générative', 'RAG', 'Graph-RAG', 'MLOps', 'CentraleSupélec', 'Rayan Ghomsi Talla'],
+  authors: [{ name: 'Rayan Gabriel Ghomsi Talla' }],
   openGraph: {
-    title: 'Rayan GHOMSI TALLA | Data Scientist & IA Engineer',
-    description: 'Découvrez mes projets en Machine Learning et Intelligence Artificielle - Modèles prédictifs, Deep Learning, Data Science',
+    title: 'Rayan Ghomsi Talla · Data Scientist',
+    description: 'Machine Learning, IA générative et évaluation de modèles. Stage à partir d’avril 2027.',
     type: 'website',
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" suppressHydrationWarning>
-      <body className={`${inter.className} bg-neural-darker text-white antialiased`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className={`${serif.variable} ${sans.variable} ${mono.variable} font-sans antialiased`}>
         <ThemeProvider>
-          <MatrixRain />
+          <a href="#contenu" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded focus:bg-accent focus:px-3 focus:py-2 focus:text-paper">
+            Aller au contenu
+          </a>
           <Navigation />
-          <main className="min-h-screen">
+          <main id="contenu" className="min-h-screen">
             {children}
           </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

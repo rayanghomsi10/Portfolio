@@ -1,150 +1,38 @@
-# 🧠 Portfolio AI - Data Scientist & AI Engineer
+# Portfolio — Rayan Ghomsi Talla, Data Scientist
 
-Un portfolio interactif et unique pour Data Scientist/IA Engineer avec des visualisations 3D, des démos ML interactives et un assistant IA.
+Portfolio de Rayan Gabriel Ghomsi Talla, en Mastère Spécialisé SIO à CentraleSupélec, qui cherche un stage de 6 mois en IA / Data Science à partir d’avril 2027.
 
-![Next.js](https://img.shields.io/badge/Next.js-14-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
-![Three.js](https://img.shields.io/badge/Three.js-0.170-green)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4-cyan)
+## Parti pris
 
-## ✨ Fonctionnalités
+- **Le spectacle montre le métier.** Le héros est un espace d’embeddings en canvas 2D : le pointeur joue la requête et ses k plus proches voisins s’allument, comme l’étape de récupération d’un RAG.
+- **Des résultats mesurés, pas des démos simulées.** Chaque projet a une étude de cas (contexte, contribution, résultats, limites). Aucune donnée fictive : pas de faux tableau de bord ni de faux chatbot.
+- **Thème sombre par défaut**, thème clair disponible, `prefers-reduced-motion` respecté.
 
-### 🌐 Page d'Accueil - Neural Network Landing
-- Réseau de neurones 3D interactif généré avec React Three Fiber
-- Nœuds représentant les compétences avec navigation au clic
-- Particules de données animées
-- Statistiques et liens rapides
+## Structure
 
-### 📁 Section Projets - Interactive ML Playground
-- Grille de projets filtrable par catégorie
-- Recherche en temps réel
-- Démos interactives pour chaque projet :
-  - Analyse de sentiments (NLP)
-  - Classification d'images (Computer Vision)
-  - Visualisations de métriques
-- Code snippets avec syntax highlighting
+```
+app/
+  page.tsx                 Accueil : héros, projet phare, travaux, parcours, compétences, contact
+  projects/page.tsx        Index des projets
+  projects/[slug]/page.tsx Étude de cas (générée statiquement)
+  experience/ skills/ contact/
+components/
+  hero/EmbeddingField.tsx  Canvas interactif du héros
+  ui/EvalReport.tsx        Rapport de résultats animé
+  ui/RagPipeline.tsx       Schéma animé du pipeline RAG
+  sections/Sections.tsx    Sections réutilisées par les pages
+lib/data/
+  projects.ts              Projets et résultats
+  experience.ts            Profil, expériences, formation, compétences
+```
 
-### 🌌 Compétences - Skill Galaxy
-- Représentation 3D des compétences en système solaire
-- Taille des planètes = niveau de maîtrise
-- Orbites = catégories de compétences
-- Interaction : rotation, zoom, sélection
+Pour modifier le contenu, éditer `lib/data/`. Les couleurs sont des variables CSS dans `app/globals.css`.
 
-### 📊 Expérience - Data Timeline
-- Timeline verticale avec scroll parallax
-- Métriques avant/après pour chaque expérience
-- Animations de transition fluides
-
-### 📈 Dashboard - Real-time Analytics
-- Statistiques de visiteurs en temps réel
-- Activité GitHub avec graphiques
-- Distribution des langages
-- Repositories populaires
-
-### 💬 Contact - AI Chat Assistant
-- Chatbot IA conversationnel
-- Réponses contextuelles sur le parcours
-- Formulaire de contact moderne
-- Informations de contact
-
-### 🎮 Easter Eggs
-- **Konami Code** : Active le mode Matrix (↑↑↓↓←→←→BA)
-- Mode sombre/clair avec transition fluide
-
-## 🚀 Installation
+## Lancer
 
 ```bash
-# Cloner le repository
-git clone https://github.com/your-username/portfolio-ai.git
-cd portfolio-ai
-
-# Installer les dépendances
 npm install
-
-# Lancer en développement
 npm run dev
-
-# Build pour production
-npm run build
-npm start
 ```
 
-## 📁 Structure du Projet
-
-```
-portfolio-ai/
-├── app/
-│   ├── page.tsx              # Page d'accueil
-│   ├── projects/
-│   │   ├── page.tsx          # Liste des projets
-│   │   └── [slug]/page.tsx   # Détail projet
-│   ├── skills/page.tsx       # Skill Galaxy 3D
-│   ├── experience/page.tsx   # Timeline
-│   ├── dashboard/page.tsx    # Analytics
-│   └── contact/page.tsx      # Contact + Chat
-├── components/
-│   ├── 3d/
-│   │   ├── NeuralNetwork.tsx
-│   │   └── SkillGalaxy.tsx
-│   ├── ml/
-│   │   ├── TextPredictor.tsx
-│   │   └── ImageClassifier.tsx
-│   ├── visualizations/
-│   │   └── MetricsChart.tsx
-│   ├── chat/
-│   │   └── AIAssistant.tsx
-│   └── layout/
-│       └── Navigation.tsx
-├── lib/
-│   ├── data/
-│   │   ├── projects.ts
-│   │   └── experience.ts
-│   └── utils.ts
-└── public/
-```
-
-## 🛠️ Technologies
-
-- **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
-- **3D**: Three.js, React Three Fiber, Drei
-- **Animations**: Framer Motion
-- **Styling**: TailwindCSS
-- **Charts**: Recharts
-- **Icons**: Lucide React
-
-## 🎨 Personnalisation
-
-### Modifier les projets
-Éditez `lib/data/projects.ts` pour ajouter/modifier vos projets.
-
-### Modifier les expériences
-Éditez `lib/data/experience.ts` pour votre parcours.
-
-### Modifier les compétences
-Éditez le tableau `skills` dans `components/3d/SkillGalaxy.tsx`.
-
-### Couleurs et thème
-Modifiez `tailwind.config.ts` pour personnaliser les couleurs.
-
-## 📱 Responsive
-
-Le portfolio est entièrement responsive avec :
-- Visualisations 3D adaptées au mobile
-- Navigation mobile avec menu hamburger
-- Touch gestures pour les interactions 3D
-
-## ⚡ Performance
-
-- Lazy loading des composants 3D
-- Code splitting par route
-- Images optimisées avec next/image
-- Animations respectant `prefers-reduced-motion`
-
-## 📄 License
-
-MIT License - Libre d'utilisation et de modification.
-
----
-
-Créé avec ❤️ et beaucoup de ☕
+Stack : Next.js (App Router), TypeScript, Tailwind CSS, Framer Motion, canvas 2D.
