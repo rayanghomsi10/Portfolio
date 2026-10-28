@@ -45,6 +45,24 @@ export const architectures: Record<string, Architecture> = {
     edges: [['s', 'n'], ['n', 'p'], ['p', 'm'], ['m', 'q'], ['m', 'a']],
   },
 
+  'dbt-orange': {
+    title: 'Trois couches, testées et orchestrées',
+    caption: 'Les données collectées arrivent dans le Data Lake. dbt les transforme en trois couches, chaque modèle étant défini, testé et versionné dans Git ; Airflow, via Cosmos, exécute un groupe de tâches par couche après le renouvellement du ticket Kerberos.',
+    nodes: [
+      { id: 'src', label: 'Collecte NiFi', sub: 'sources opérationnelles', x: 20, y: 150, w: 158 },
+      { id: 'hdfs', label: 'HDFS · Hive', sub: 'Data Lake', x: 202, y: 150, w: 128 },
+      { id: 'kinit', label: 'kinit Kerberos', sub: 'ticket renouvelé', x: 370, y: 50, w: 150 },
+      { id: 'repo', label: 'Azure DevOps', sub: 'code dbt versionné', x: 690, y: 50, w: 150 },
+      { id: 'it', label: 'Couche IT', sub: 'proche de la source', x: 370, y: 150, w: 140 },
+      { id: 'inter', label: 'Intermediate', sub: 'calculs', x: 535, y: 150, w: 140 },
+      { id: 'mart', label: 'Mart', sub: 'tables de faits', x: 700, y: 150, w: 140, key: true },
+      { id: 'tests', label: 'Tests dbt', sub: '6 / 6 réussis', x: 535, y: 262, w: 170 },
+      { id: 'bi', label: 'Rapports BI', x: 875, y: 150, w: 110 },
+    ],
+    frames: [{ id: 'af', label: 'Orchestré par Airflow + Cosmos · un groupe de tâches par couche', x: 350, y: 20, w: 505, h: 325 }],
+    edges: [['src', 'hdfs'], ['hdfs', 'it'], ['kinit', 'it'], ['it', 'inter'], ['inter', 'mart'], ['mart', 'bi'], ['inter', 'tests']],
+  },
+
   'churn-telecom': {
     title: 'Cinq sources, un score',
     caption: 'Cinq sources réunies dans un Data Lake, transformées dans Hive, puis notées par un modèle PySpark. Airflow orchestre tout et réentraîne le modèle chaque semaine.',
@@ -92,25 +110,5 @@ export const architectures: Record<string, Architecture> = {
       { id: 'out', label: 'Synthèse', sub: 'reliée à ses sources', x: 825, y: 200, w: 155 },
     ],
     edges: [['src', 'ext'], ['ext', 'kg'], ['kg', 'ret'], ['q', 'ret'], ['ret', 'llm'], ['llm', 'out']],
-  },
-
-  orange: {
-    title: 'Orange Data AI Factory',
-    caption: 'Deux chantiers sur des serveurs sans accès Internet : la modernisation ELT du Data Lake, et le suivi automatisé des transactions AFD.',
-    nodes: [
-      { id: 'src', label: 'Sources', x: 40, y: 85, w: 140 },
-      { id: 'ab', label: 'Airbyte', sub: 'ingestion', x: 245, y: 85, w: 150 },
-      { id: 'ch', label: 'ClickHouse', sub: 'entrepôt', x: 470, y: 85, w: 160, key: true },
-      { id: 'dbt', label: 'DBT', sub: 'déployé hors ligne', x: 705, y: 85, w: 130 },
-      { id: 'poc', label: 'POC', sub: 'NiFi · Airbyte · DBT', x: 845, y: 85, w: 135 },
-      { id: 'afd', label: 'Transactions AFD', x: 40, y: 245, w: 160 },
-      { id: 'scr', label: 'Bash · Hive SQL · Python', sub: 'suivi automatisé', x: 245, y: 245, w: 230 },
-      { id: 'rep', label: 'Rapports HTML', sub: 'visualisations · e-mail', x: 530, y: 245, w: 200 },
-    ],
-    frames: [
-      { id: 'rhel', label: 'Serveurs RHEL sans accès Internet', x: 10, y: 14, w: 980, h: 336 },
-      { id: 'af', label: 'Orchestré par Airflow', x: 225, y: 50, w: 425, h: 120 },
-    ],
-    edges: [['src', 'ab'], ['ab', 'ch'], ['afd', 'scr'], ['scr', 'rep']],
   },
 }

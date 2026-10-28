@@ -27,16 +27,17 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     title: 'Data Engineer stagiaire',
-    company: 'Orange Cameroun, Data AI Factory',
+    company: 'Orange Cameroun, département Data & IA',
     location: 'Douala',
     period: 'Janv. – juin 2026',
     points: [
-      'Modernisation du Data Lake : déploiement de DBT et Airbyte sur des serveurs RHEL sans accès Internet.',
-      'Suivi automatisé des transactions AFD (Bash, Hive SQL, Python) avec visualisations et rapports HTML envoyés par e-mail.',
-      'Pipeline Airbyte + Airflow vers un entrepôt ClickHouse.',
-      'Benchmark (POC) NiFi, Airbyte et DBT pour choisir l’architecture ELT cible.',
+      'Migration de la couche de transformation du Data Lake vers dbt : 22 modèles sur deux pipelines de production, 6 tests sur 6 réussis.',
+      'Inventaire de l’existant par reverse engineering : 1 966 configurations, 947 tables, 4 330 scripts HQL, dont 75,9 % migrables.',
+      'Orchestration Airflow avec astronomer-cosmos et Kerberos ; installation hors ligne sur des serveurs RHEL sans accès Internet.',
+      'Pipeline Airbyte + Airflow vers ClickHouse et suivi automatisé des transactions AFD avec rapports HTML par e-mail.',
     ],
-    stack: ['DBT', 'Airbyte', 'Airflow', 'ClickHouse', 'Hive', 'Bash', 'Python', 'RHEL'],
+    stack: ['dbt', 'Airflow', 'Cosmos', 'Hive', 'Spark', 'Kerberos', 'Airbyte', 'ClickHouse', 'RHEL'],
+    projectSlug: 'dbt-orange',
   },
   {
     title: 'Développeur backend freelance (temps partiel)',

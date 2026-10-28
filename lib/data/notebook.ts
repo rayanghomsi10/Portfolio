@@ -19,9 +19,9 @@ export const notes: Note[] = [
     text: 'Juge RAGAS de 7B, donc des scores bruités. Chaque version est rejouée sur les mêmes 85 questions et comparée à la précédente, avec IC bootstrap à 95 %.',
   },
   {
-    project: 'Orange Data AI Factory',
+    project: 'Orange · Data & IA',
     tag: 'contrainte',
-    text: 'Serveurs RHEL sans accès Internet. DBT et Airbyte y ont été déployés hors ligne.',
+    text: 'Serveurs RHEL sans accès Internet. Chaque paquet Python préparé sur un poste connecté, transféré par SFTP, puis installé hors ligne.',
   },
   {
     project: 'Assistant-RAG',
@@ -30,7 +30,7 @@ export const notes: Note[] = [
     open: true,
   },
   {
-    project: 'Orange Data AI Factory',
+    project: 'Orange · Data & IA',
     tag: 'choix',
     text: 'Avant de fixer l’architecture ELT cible : un POC comparant NiFi, Airbyte et DBT.',
   },

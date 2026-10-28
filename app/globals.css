@@ -51,6 +51,10 @@
   --accent: 43 76 111; /* #2B4C6F, ≈ 7:1 */
   --accent-soft: 212 222 234;
 }
+[data-universe='layers'] {
+  --accent: 62 85 96; /* #3E5560, ≈ 7:1 */
+  --accent-soft: 214 222 224;
+}
 .dark [data-universe='fragments'] {
   --accent: 234 98 60;
   --accent-soft: 62 33 22;
@@ -62,6 +66,10 @@
 .dark [data-universe='wave'] {
   --accent: 226 170 72;
   --accent-soft: 54 40 16;
+}
+.dark [data-universe='layers'] {
+  --accent: 150 180 192;
+  --accent-soft: 28 38 42;
 }
 .dark [data-universe='grid'] {
   --accent: 140 172 214;

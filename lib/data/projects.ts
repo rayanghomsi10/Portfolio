@@ -7,7 +7,7 @@ export interface Result {
 }
 
 /** Univers visuel : couleur d'accent et motif, définis dans globals.css et components/universe */
-export type Universe = 'fragments' | 'mesh' | 'wave' | 'grid' | 'base'
+export type Universe = 'fragments' | 'mesh' | 'wave' | 'grid' | 'layers' | 'base'
 
 export interface Project {
   slug: string
@@ -103,6 +103,46 @@ export const projects: Project[] = [
       { label: 'Capteurs suivis', value: '20+' },
     ],
     stack: ['Python', 'Random Forest', 'XGBoost', 'Réseaux de neurones', 'Apache NiFi', 'PostgreSQL'],
+  },
+  {
+    slug: 'dbt-orange',
+    universe: 'layers',
+    plain: {
+      problem: 'Le Data Lake d’un opérateur télécom transformait ses données avec un ordonnanceur maison, sans tests, sans documentation formelle et sans traçabilité des dépendances entre tables.',
+      did: 'J’ai inventorié l’existant, puis migré deux pipelines de production vers dbt, testés et orchestrés par Airflow, sur des serveurs sans accès Internet.',
+      result: '22 modèles migrés, 6 tests sur 6 réussis sur les données de production, et 75,9 % des configurations identifiées comme migrables.',
+    },
+    title: 'Migration vers dbt',
+    kind: 'Stage de fin d’études, Orange Cameroun · Data & IA',
+    period: 'Janv. – juin 2026',
+    status: 'Terminé',
+    domain: 'Data Engineering',
+    summary:
+      'Remplacer la couche de transformation d’un Data Lake télécom par dbt : inventaire de l’existant, migration de deux pipelines de production, tests et orchestration Airflow.',
+    context:
+      'Le Data Lake d’Orange Cameroun repose sur un cluster Hadoop HDP de 25 nœuds qui exécute plus de 800 jobs par jour sur plus de 2 500 tables Hive. Les transformations passaient par un ordonnanceur maison écrit en Scala, sans tests automatisés ni lineage. La mission : démontrer que dbt peut le remplacer pour les transformations SQL, dans une trajectoire vers un Modern Data Stack (Dataiku, Starburst, CDP).',
+    contributions: [
+      'Inventaire par reverse engineering sur HDFS : 1 966 fichiers de configuration actifs, 947 tables et 4 330 scripts HQL ; 75,9 % des fichiers relèvent de transformations SQL pures, migrables vers dbt.',
+      'Preuve de concept sur deux pipelines de production : Souscriptions (10 modèles) et SMS Usage (12 modèles), organisés en trois couches (IT, intermediate, mart).',
+      'Tests dbt (not_null, unique, accepted_values, relationships et tests métier) : les premières règles de qualité formalisées et reproductibles sur ces données.',
+      'Orchestration Airflow avec astronomer-cosmos : un groupe de tâches par couche, chacun avec son profil de ressources Spark, et renouvellement du ticket Kerberos ; code versionné sur Azure DevOps.',
+      'Installation hors ligne sur des serveurs RHEL isolés d’Internet : paquets préparés sur un poste connecté puis transférés par SFTP, versions de dbt choisies pour rester compatibles avec Spark 2.3.2.',
+      'Benchmark sur sept dimensions (maintenabilité, testabilité, observabilité, lineage, time-to-insight, versioning, onboarding).',
+      'Autres travaux du stage : pipeline Airbyte + Airflow vers ClickHouse et suivi automatisé des transactions AFD (Bash, Hive SQL, Python) avec rapports HTML par e-mail.',
+    ],
+    results: [
+      { label: 'Modèles migrés', value: '22', note: 'Souscriptions (10) et SMS Usage (12), sur données de production' },
+      { label: 'Tests dbt', value: '6 / 6', note: 'Tous réussis sur données de production ; couverture de 0,27 test par modèle, à étendre' },
+      { label: 'Configurations migrables', value: '75,9 %', note: 'Soit environ 1 493 fichiers sur 1 966, d’après l’inventaire' },
+      { label: 'Benchmark dbt', value: '4,6 / 5', note: 'Contre 1,4 / 5 pour l’existant ; auto-évaluation qualitative sur 7 dimensions, validée chaque semaine avec le référent' },
+    ],
+    limits: [
+      'Couverture de tests encore faible : 6 tests pour 22 modèles.',
+      'Benchmark qualitatif, auto-évalué : une comparaison structurée, pas une mesure absolue.',
+      'dbt hébergé sur un serveur sans engagement de niveau de service ; à réévaluer pour la production.',
+      'La migration complète (environ 1 493 fichiers) reste à conduire, estimée à 12 à 18 mois.',
+    ],
+    stack: ['dbt-core', 'dbt-spark', 'Apache Airflow', 'astronomer-cosmos', 'Hive', 'Spark', 'Hadoop HDP', 'Kerberos', 'Azure DevOps', 'RHEL'],
   },
   {
     slug: 'colorfol-backend',

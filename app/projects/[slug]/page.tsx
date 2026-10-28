@@ -8,6 +8,7 @@ import RagPipeline from '@/components/ui/RagPipeline'
 import ArchitectureDiagram from '@/components/ui/ArchitectureDiagram'
 import BonusConcurrency from '@/components/ui/BonusConcurrency'
 import RagGuardrails from '@/components/ui/RagGuardrails'
+import DbtAnomalies from '@/components/ui/DbtAnomalies'
 import { architectures } from '@/lib/data/architectures'
 import MetricFlip from '@/components/ui/MetricFlip'
 import Reveal from '@/components/ui/Reveal'
@@ -129,6 +130,7 @@ export default async function ProjectPage({ params }: Params) {
             <div className="mt-10 space-y-6">
               <ArchitectureDiagram id={project.slug} />
               {project.slug === 'colorfol-backend' && <BonusConcurrency />}
+              {project.slug === 'dbt-orange' && <DbtAnomalies />}
             </div>
           )
         )}
