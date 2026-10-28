@@ -36,7 +36,7 @@ export default async function ProjectPage({ params }: Params) {
 
   return (
     <div data-universe={project.universe}>
-      <UniverseTransition kind={project.universe} />
+      <UniverseTransition kind={project.universe} index={index} title={project.title} />
 
       {/* En-tête */}
       <header className="relative overflow-hidden border-b border-ink">
