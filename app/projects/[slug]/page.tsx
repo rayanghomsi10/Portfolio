@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Github } from 'lucide-react'
 import EvalReport from '@/components/ui/EvalReport'
 import RagPipeline from '@/components/ui/RagPipeline'
+import ArchitectureDiagram from '@/components/ui/ArchitectureDiagram'
+import { architectures } from '@/lib/data/architectures'
 import MetricFlip from '@/components/ui/MetricFlip'
 import Reveal from '@/components/ui/Reveal'
 import HeroField from '@/components/hero/HeroField'
@@ -104,13 +106,34 @@ export default async function ProjectPage({ params }: Params) {
           </Link>
         </div>
 
+        {/* Planche technique : l'architecture réelle, tracée au scroll */}
+        {project.slug === 'assistant-rag' ? (
+          <figure className="mt-10 border border-ink bg-surface">
+            <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-ink px-5 py-4 sm:px-8">
+              <figcaption className="font-serif text-2xl font-light leading-tight md:text-3xl" style={display}>
+                De la question à la réponse citée
+              </figcaption>
+              <span className="font-mono text-[11px] uppercase tracking-wide text-accent">Planche technique</span>
+            </div>
+            <div className="p-5 sm:p-8">
+              <RagPipeline />
+            </div>
+          </figure>
+        ) : (
+          architectures[project.slug] && (
+            <div className="mt-10">
+              <ArchitectureDiagram id={project.slug} />
+            </div>
+          )
+        )}
+
         {/* Niveau 2 : pour les équipes techniques */}
         <details className="group mt-10 border-y border-ink">
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-6 [&::-webkit-details-marker]:hidden">
             <span>
               <span className="block font-mono text-[11px] uppercase tracking-wide text-accent">Pour les équipes techniques</span>
               <span className="mt-1 block font-serif text-3xl font-light md:text-4xl" style={display}>
-                Architecture, choix, métriques
+                Contexte, réalisation, métriques
               </span>
             </span>
             <span className="font-mono text-2xl transition-transform duration-300 group-open:rotate-45" aria-hidden>
@@ -119,13 +142,6 @@ export default async function ProjectPage({ params }: Params) {
           </summary>
 
           <div className="space-y-16 pb-16 pt-6">
-            {project.slug === 'assistant-rag' && (
-              <div className="border border-ink bg-surface p-5 sm:p-8">
-                <p className="eyebrow mb-6">Architecture</p>
-                <RagPipeline />
-              </div>
-            )}
-
             <div className="grid gap-14 lg:grid-cols-[1fr_22rem]">
               <div className="space-y-12">
                 <div>
