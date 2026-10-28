@@ -29,8 +29,10 @@ export default function Navigation() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
-        isScrolled ? 'border-b border-line bg-paper/80 backdrop-blur-md' : 'border-b border-transparent'
+        // Le padding de zone sûre garde le menu sous la barre d'état des iPhone (encoche, Dynamic Island)
+        'fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300',
+        // Opaque sur mobile : à 80 %, le texte qui défile dessous restait lisible à travers le bandeau
+        isScrolled ? 'border-b border-line bg-paper md:bg-paper/90 md:backdrop-blur-md' : 'border-b border-transparent'
       )}
     >
       <div className="mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-3 sm:px-8">

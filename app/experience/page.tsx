@@ -10,7 +10,7 @@ export default function ExperiencePage() {
         index="02"
         eyebrow="Parcours"
         title={<>Douala, Nantes, <em className="text-accent">Saclay</em></>}
-        intro="Ingénieur Data Science (UCAC-ICAM, accrédité CTI), aujourd’hui en Mastère Spécialisé à CentraleSupélec."
+        intro="Ingénieur informatique en Génie Logiciel & Systèmes d’Information (UCAC-ICAM, accrédité CTI), aujourd’hui en Mastère Spécialisé à CentraleSupélec."
       />
       <section className="mx-auto max-w-page px-4 pb-28 sm:px-6">
         <Timeline />

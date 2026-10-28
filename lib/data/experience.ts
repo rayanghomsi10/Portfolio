@@ -94,7 +94,7 @@ export const education = [
     period: 'Depuis sept. 2026',
   },
   {
-    degree: 'Diplôme d’ingénieur, spécialité Data Science (accrédité CTI)',
+    degree: 'Diplôme d’Ingénieur Informatique, option Génie Logiciel & Systèmes d’Information (accrédité CTI)',
     school: 'UCAC-ICAM',
     location: 'Douala',
     period: '2021 – 2026',

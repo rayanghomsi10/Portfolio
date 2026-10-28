@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Fraunces, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/layout/Navigation'
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     type: 'website',
   },
 }
+
+// Couleur de la barre d'état du navigateur ; ajustée au thème choisi par le script d'init et le bouton
+export const viewport: Viewport = { themeColor: '#EDE8DE' }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
