@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Github } from 'lucide-react'
 import EvalReport from '@/components/ui/EvalReport'
 import RagPipeline from '@/components/ui/RagPipeline'
 import ArchitectureDiagram from '@/components/ui/ArchitectureDiagram'
+import BonusConcurrency from '@/components/ui/BonusConcurrency'
 import { architectures } from '@/lib/data/architectures'
 import MetricFlip from '@/components/ui/MetricFlip'
 import Reveal from '@/components/ui/Reveal'
@@ -121,8 +122,9 @@ export default async function ProjectPage({ params }: Params) {
           </figure>
         ) : (
           architectures[project.slug] && (
-            <div className="mt-10">
+            <div className="mt-10 space-y-6">
               <ArchitectureDiagram id={project.slug} />
+              {project.slug === 'colorfol-backend' && <BonusConcurrency />}
             </div>
           )
         )}
