@@ -1,79 +1,34 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react'
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
 interface ThemeContextType {
   isDark: boolean
   toggleTheme: () => void
-  matrixMode: boolean
-  activateMatrix: () => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+// Exécuté dans <head> avant l'hydratation pour éviter un flash de mauvais thème
+export const themeInitScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':true;document.documentElement.classList.toggle('dark',d)}catch(e){document.documentElement.classList.add('dark')}})()`
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(true)
-  const [matrixMode, setMatrixMode] = useState(false)
-  const konamiIndexRef = useRef(0)
 
-  // Konami Code: ↑↑↓↓←→←→BA
-  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA']
-
-  // Initialiser le thème depuis localStorage
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme')
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const shouldBeDark = savedTheme ? savedTheme === 'dark' : prefersDark
-    
-    setIsDark(shouldBeDark)
-    if (shouldBeDark) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  }, [])
-
-  // Konami Code listener
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === konamiCode[konamiIndexRef.current]) {
-        konamiIndexRef.current++
-        
-        if (konamiIndexRef.current === konamiCode.length) {
-          setMatrixMode(true)
-          setTimeout(() => setMatrixMode(false), 10000)
-          konamiIndexRef.current = 0
-        }
-      } else {
-        konamiIndexRef.current = 0
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    setIsDark(document.documentElement.classList.contains('dark'))
   }, [])
 
   const toggleTheme = () => {
-    const newIsDark = !isDark
-    setIsDark(newIsDark)
-    localStorage.setItem('theme', newIsDark ? 'dark' : 'light')
-    if (newIsDark) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    const next = !isDark
+    setIsDark(next)
+    document.documentElement.classList.toggle('dark', next)
+    try {
+      localStorage.setItem('theme', next ? 'dark' : 'light')
+    } catch {}
   }
 
-  const activateMatrix = () => {
-    setMatrixMode(true)
-    setTimeout(() => setMatrixMode(false), 10000)
-  }
-
-  return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme, matrixMode, activateMatrix }}>
-      {children}
-    </ThemeContext.Provider>
-  )
+  return <ThemeContext.Provider value={{ isDark, toggleTheme }}>{children}</ThemeContext.Provider>
 }
 
 export function useTheme() {

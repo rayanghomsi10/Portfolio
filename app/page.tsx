@@ -1,227 +1,214 @@
-'use client'
-
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
-import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
+import { ArrowDown, ArrowRight, Github, Linkedin } from 'lucide-react'
+import HeroField from '@/components/hero/HeroField'
+import EvalReport from '@/components/ui/EvalReport'
+import RagPipeline from '@/components/ui/RagPipeline'
+import Reveal from '@/components/ui/Reveal'
+import { ContactBlock, ProjectIndex, SectionHeader, SkillMatrix, Timeline } from '@/components/sections/Sections'
+import { getProject } from '@/lib/data/projects'
+import { profile } from '@/lib/data/experience'
 
-const NeuralNetwork = dynamic(() => import('@/components/3d/NeuralNetwork'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-16 h-16 border-4 border-neural-glow border-t-transparent rounded-full animate-spin" />
-    </div>
-  ),
-})
+const highlights = [
+  { value: '0,973', label: 'evidence_hit', source: 'Assistant-RAG' },
+  { value: '−30 %', label: 'taux de rebut', source: 'Jumeau numérique' },
+  { value: '0,87', label: 'F1-score', source: 'Churn télécom' },
+  { value: '1ère', label: 'place', source: 'TSA InnovLab' },
+]
 
 export default function HomePage() {
+  const rag = getProject('assistant-rag')!
+
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Neural Network Background */}
-      <div className="absolute inset-0 z-0">
-        <Suspense fallback={null}>
-          <NeuralNetwork />
-        </Suspense>
-      </div>
+    <>
+      {/* Héros */}
+      <section className="relative flex min-h-[100svh] flex-col overflow-hidden">
+        <HeroField />
+        <div
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-paper via-paper/75 to-transparent md:via-paper/40"
+          aria-hidden
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-paper to-transparent" aria-hidden />
 
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-neural-darker/50 to-neural-darker z-10 pointer-events-none" />
-
-      {/* Content */}
-      <div className="relative z-20 min-h-screen flex flex-col items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center max-w-4xl mx-auto"
-        >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
-          >
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-sm text-gray-300">Recherche stage de fin d&apos;études</span>
-          </motion.div>
-
-          {/* Name */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg text-neural-glow mb-2"
-          >
-            Rayan Gabriel GHOMSI TALLA
-          </motion.p>
-
-          {/* Title */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="block text-white">Data Scientist</span>
-            <span className="block gradient-text">&amp; IA Engineer</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Passionné par l&apos;Intelligence Artificielle et la Data Science. Je conçois des modèles 
-            de Machine Learning et Deep Learning pour résoudre des problèmes complexes.
+        <div className="relative mx-auto flex w-full max-w-page flex-1 flex-col justify-center px-4 pb-10 pt-32 sm:px-6">
+          <p className="mb-8 flex items-center gap-3 font-mono text-xs text-muted">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-positive opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-positive" />
+            </span>
+            MS SIO · CentraleSupélec — stage de 6 mois dès avril 2027
           </p>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-            <Link href="/projects">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-neural-glow to-neural-pulse text-white font-semibold shadow-lg shadow-neural-glow/25 hover:shadow-neural-glow/40 transition-shadow"
-              >
-                Voir mes projets
-              </motion.button>
+          <h1 className="font-serif leading-[0.86] tracking-tight">
+            <span className="block text-[clamp(4.2rem,14vw,11.5rem)]">Data</span>
+            <span className="block text-[clamp(4.2rem,14vw,11.5rem)]">
+              Scientist<span className="text-accent">.</span>
+            </span>
+          </h1>
+
+          <p className="mt-8 max-w-xl font-serif text-2xl italic leading-snug text-ink/90 md:text-3xl">
+            Des modèles, et la preuve qu’ils tiennent leurs promesses.
+          </p>
+          <p className="mt-5 max-w-lg leading-relaxed text-muted">{profile.pitch}</p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <Link
+              href="#projet-phare"
+              className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-paper transition-transform hover:-translate-y-0.5"
+            >
+              Voir Assistant-RAG
+              <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
             </Link>
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-xl glass border border-white/10 text-white font-semibold hover:bg-white/10 transition-colors"
-              >
-                Me contacter
-              </motion.button>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-paper/60 px-6 py-3 font-medium backdrop-blur transition-colors hover:border-accent hover:text-accent"
+            >
+              Me contacter
             </Link>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex items-center justify-center gap-4">
             {[
-              { icon: Github, href: 'https://github.com/Yansoki', label: 'GitHub' },
-              { icon: Linkedin, href: 'https://linkedin.com/in/rayan-ghomsi', label: 'LinkedIn' },
-              { icon: Mail, href: 'mailto:rayan.ghomsi@2026.ucac-icam.com', label: 'Email' },
-              { icon: Phone, href: 'tel:+237698340774', label: 'Téléphone' },
-            ].map((social) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                target={social.href.startsWith('http') ? '_blank' : undefined}
-                rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-                className="p-3 rounded-xl glass hover:bg-white/10 transition-colors group"
-                aria-label={social.label}
+              { href: profile.github, label: 'GitHub', Icon: Github },
+              { href: profile.linkedin, label: 'LinkedIn', Icon: Linkedin },
+            ].map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-line bg-paper/60 text-muted backdrop-blur transition-colors hover:border-accent hover:text-accent"
               >
-                <social.icon className="w-5 h-5 text-gray-400 group-hover:text-neural-glow transition-colors" />
-              </motion.a>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center gap-2 text-gray-500"
-          >
-            <span className="text-sm">Explorer</span>
-            <ArrowDown className="w-5 h-5" />
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Stats Section */}
-      <section className="relative z-20 py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          >
-            {[
-              { value: '92%', label: 'Précision modèles' },
-              { value: '87%', label: 'F1-Score Churn' },
-              { value: '1Go+', label: 'Données/jour traitées' },
-              { value: '30%', label: 'Réduction rebut' },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl glass text-center group hover:bg-white/5 transition-colors"
-              >
-                <div className="text-4xl md:text-5xl font-bold gradient-text mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Quick Links */}
-      <section className="relative z-20 py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
-          >
-            Explorez mon <span className="gradient-text">univers</span>
-          </motion.h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Projets Big Data & ML',
-                description: 'Data Lake, pipelines ETL, modèles prédictifs et jumeaux numériques',
-                href: '/projects',
-                gradient: 'from-blue-500 to-cyan-500',
-              },
-              {
-                title: 'Compétences',
-                description: 'PySpark, Airflow, TensorFlow, et bien plus en 3D',
-                href: '/skills',
-                gradient: 'from-purple-500 to-pink-500',
-              },
-              {
-                title: 'Expériences',
-                description: 'ICAM Nantes, UCAC-ICAM et projets de recherche',
-                href: '/experience',
-                gradient: 'from-orange-500 to-red-500',
-              },
-            ].map((card, index) => (
-              <Link key={card.title} href={card.href}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="p-6 rounded-2xl glass group cursor-pointer h-full"
-                >
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                    <div className="w-6 h-6 bg-white/20 rounded-lg" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-neural-glow transition-colors">
-                    {card.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm">{card.description}</p>
-                </motion.div>
-              </Link>
+                <Icon className="h-4 w-4" />
+              </a>
             ))}
           </div>
         </div>
+
+        <div className="relative mx-auto w-full max-w-page px-4 pb-8 sm:px-6">
+          <p className="caret mb-4 hidden font-mono text-[11px] text-muted md:block">
+            bougez la souris : vous êtes la requête, les points allumés sont ses plus proches voisins
+          </p>
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-4">
+            {highlights.map((h) => (
+              <div key={h.source} className="bg-paper/85 px-4 py-4 backdrop-blur">
+                <dt className="font-mono text-[11px] text-muted">
+                  {h.label} · {h.source}
+                </dt>
+                <dd className="tabular mt-1 font-serif text-3xl text-ink md:text-4xl">{h.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </section>
-    </div>
+
+      {/* Projet phare */}
+      <section id="projet-phare" className="mx-auto max-w-page scroll-mt-20 px-4 py-28 sm:px-6">
+        <SectionHeader
+          index="01"
+          eyebrow="Projet phare"
+          title={
+            <>
+              Assistant-RAG<span className="text-muted">, </span>
+              <em className="text-accent">évalué</em> avant d’être montré.
+            </>
+          }
+          intro={rag.context}
+        />
+
+        <div className="grid gap-10 md:grid-cols-[8rem_1fr] md:gap-10">
+          <div className="hidden md:block" />
+          <div className="grid gap-10 lg:grid-cols-[1fr_22rem]">
+            <Reveal>
+              <ul className="space-y-4">
+                {rag.contributions.map((c) => (
+                  <li key={c} className="flex gap-4 leading-relaxed text-ink/90">
+                    <span className="mt-[0.7em] h-px w-4 shrink-0 bg-accent" aria-hidden />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a href={rag.repoUrl} target="_blank" rel="noopener noreferrer" className="link inline-flex items-center gap-2">
+                  <Github className="h-4 w-4" /> Code source
+                </a>
+                <Link href="/projects/assistant-rag" className="link inline-flex items-center gap-2">
+                  Étude de cas complète <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <EvalReport results={rag.results} caption="85 questions : 73 dans le périmètre, 12 hors périmètre. Juge RAGAS : qwen2.5:7b." />
+            </Reveal>
+          </div>
+
+          <div className="hidden md:block" />
+          <Reveal className="rounded-lg border border-line bg-surface/40 p-5 sm:p-8">
+            <p className="eyebrow mb-6">Pipeline</p>
+            <RagPipeline />
+          </Reveal>
+
+          <div className="hidden md:block" />
+          <Reveal className="border-l-2 border-accent pl-6">
+            <p className="eyebrow mb-3">Ce qui ne marche pas encore</p>
+            <ul className="space-y-1.5 text-muted">
+              {rag.limits!.map((l) => (
+                <li key={l}>{l}</li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Travaux */}
+      <section className="mx-auto max-w-page px-4 py-28 sm:px-6">
+        <SectionHeader
+          index="02"
+          eyebrow="Travaux"
+          title={
+            <>
+              De la donnée brute <em className="text-accent">au modèle</em> en production.
+            </>
+          }
+          intro="IA générative, Machine Learning industriel, Data Engineering : chaque projet a sa page, avec le contexte, ce que j’ai fait et ce que ça a donné."
+        />
+        <ProjectIndex exclude="assistant-rag" />
+      </section>
+
+      {/* Parcours */}
+      <section className="mx-auto max-w-page px-4 py-28 sm:px-6">
+        <SectionHeader
+          index="03"
+          eyebrow="Parcours"
+          title={
+            <>
+              Douala, Nantes, <em className="text-accent">Saclay</em>.
+            </>
+          }
+          intro="Ingénieur Data Science (UCAC-ICAM, accrédité CTI), aujourd’hui en Mastère Spécialisé à CentraleSupélec."
+        />
+        <Timeline />
+      </section>
+
+      {/* Compétences */}
+      <section className="mx-auto max-w-page px-4 py-28 sm:px-6">
+        <SectionHeader
+          index="04"
+          eyebrow="Boîte à outils"
+          title={
+            <>
+              Les outils, <em className="text-accent">rangés par usage</em>.
+            </>
+          }
+          intro="Pas de jauges ni de pourcentages : chaque outil listé ici a servi dans un projet ou une expérience décrits sur ce site."
+        />
+        <SkillMatrix />
+      </section>
+
+      {/* Contact */}
+      <section className="mx-auto max-w-page px-4 py-28 sm:px-6">
+        <SectionHeader index="05" eyebrow="Contact" title={<>Parlons de votre <em className="text-accent">prochain modèle</em>.</>} />
+        <div className="md:pl-[10.5rem]">
+          <ContactBlock />
+        </div>
+      </section>
+    </>
   )
 }
