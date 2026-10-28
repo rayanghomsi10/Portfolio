@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useWipe } from './useWipe'
 
 const PAGES: Record<string, { index: string; label: string }> = {
   '/': { index: '00', label: 'Index' },
@@ -21,17 +21,14 @@ export const CURTAIN_HOLD = 0.75
  */
 export default function PageCurtain({ pathname }: { pathname: string }) {
   const page = PAGES[pathname] ?? { index: '—', label: 'Page' }
-  // Retiré du DOM une fois levé : il ne peut plus réapparaître
-  const [done, setDone] = useState(false)
+  // Le rideau se lève, puis il est retiré du DOM
+  const { clipPath, done } = useWipe('top', CURTAIN_HOLD, 0.8)
   if (done) return null
 
   return (
     <motion.div
-      onAnimationComplete={() => setDone(true)}
       className="pointer-events-none fixed inset-0 z-[80] flex flex-col justify-between bg-raw px-4 pb-10 pt-8 text-raw-ink sm:px-8"
-      initial={{ clipPath: 'inset(0 0 0% 0)' }}
-      animate={{ clipPath: 'inset(0 0 100% 0)' }}
-      transition={{ duration: 0.8, delay: CURTAIN_HOLD, ease: EASE }}
+      style={{ clipPath, WebkitClipPath: clipPath }}
       aria-hidden
     >
       <motion.p

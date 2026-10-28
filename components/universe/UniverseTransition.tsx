@@ -1,30 +1,24 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import type { Universe } from '@/lib/data/projects'
 import Motif from './Motif'
-
-const EASE = [0.76, 0, 0.24, 1] as const
+import { useWipe } from './useWipe'
 
 /*
  * À l'entrée d'une étude de cas : le motif du projet couvre l'écran en reculant doucement,
  * le titre s'affiche dans la couleur de l'univers, puis le panneau se retire vers la droite.
  */
 export default function UniverseTransition({ kind, index, title }: { kind: Universe; index: number; title: string }) {
-  const reduce = useReducedMotion()
-  // Retiré du DOM une fois le panneau sorti : il ne peut plus réapparaître
-  const [done, setDone] = useState(false)
-  if (reduce || done) return null
+  // Le panneau se retire vers la droite, puis il est retiré du DOM
+  const { clipPath, done } = useWipe('right', 0.85, 0.9)
+  if (done) return null
   return (
     <motion.div
       // Rendu hors de la page : l'univers est porté par le panneau lui-même
       data-universe={kind}
-      onAnimationComplete={() => setDone(true)}
       className="pointer-events-none fixed inset-0 z-[80] overflow-hidden bg-paper"
-      initial={{ clipPath: 'inset(0 0 0 0)' }}
-      animate={{ clipPath: 'inset(0 0 0 100%)' }}
-      transition={{ duration: 0.9, delay: 0.85, ease: EASE }}
+      style={{ clipPath, WebkitClipPath: clipPath }}
       aria-hidden
     >
       {kind !== 'base' && (
