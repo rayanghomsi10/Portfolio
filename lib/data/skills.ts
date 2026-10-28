@@ -16,7 +16,7 @@ export const usageTargets: UsageTarget[] = [
   { id: 'graph', label: 'Graph-RAG', href: '/projects/graph-rag-veille', detail: 'Projet d’entreprise · MS SIO', universe: 'mesh' },
   { id: 'jumeau', label: 'Jumeau numérique', href: '/projects/jumeau-numerique-extrudeuse', detail: 'Stage de recherche · ICAM Nantes', universe: 'grid' },
   { id: 'churn', label: 'Churn télécom', href: '/projects/churn-telecom', detail: 'Projet · UCAC-ICAM', universe: 'base' },
-  { id: 'colorfol', label: 'Colorfol', href: '/projects/colorfol-backend', detail: 'Freelance · backend complet', universe: 'wave' },
+  { id: 'colorfol', label: 'Colorfol', href: '/projects/colorfol-backend', detail: 'Freelance · billetterie, bonus, envoi des billets', universe: 'wave' },
   { id: 'orange', label: 'Orange Data AI Factory', href: '/experience', detail: 'Stage · Data Engineering', universe: 'base' },
   { id: 'web', label: 'Expériences web', href: '/experience', detail: 'Digital Experience, Lab2view · 2023–2024', universe: 'base' },
 ]
@@ -54,13 +54,13 @@ export const skillUsage: Record<string, string[]> = {
   Bash: ['orange'],
   PHP: ['web'],
   // Bases de données
-  PostgreSQL: ['jumeau', 'colorfol'],
-  MySQL: ['web'],
-  MongoDB: ['colorfol'],
+  PostgreSQL: ['jumeau'],
+  MySQL: ['colorfol', 'web'],
   Hive: ['churn', 'orange'],
   // Web & API
   FastAPI: ['rag'],
   Django: ['colorfol'],
+  Celery: ['colorfol'],
   Laravel: ['web'],
 }
 

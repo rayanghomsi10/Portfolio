@@ -65,19 +65,18 @@ export const architectures: Record<string, Architecture> = {
   },
 
   'colorfol-backend': {
-    title: 'Un backend, trois domaines',
-    caption: 'Une seule API REST Django sert le streaming, les playlists et la recommandation, avec deux bases de données : PostgreSQL et MongoDB.',
+    title: 'Du paiement au billet dans la boîte mail',
+    caption: 'Quand un achat est payé, l’API attribue les bonus éventuels et confie l’envoi à Celery : le billet est rendu en PDF par un service Chromium, puis joint à l’e-mail. À l’entrée, chaque billet ne se scanne qu’une fois.',
     nodes: [
-      { id: 'req', label: 'Requêtes', sub: 'utilisateurs de la plateforme', x: 20, y: 150, w: 150 },
-      { id: 'api', label: 'API REST Django', sub: 'ensemble du backend', x: 220, y: 150, w: 180, key: true },
-      { id: 'stream', label: 'Streaming', x: 485, y: 50, w: 170, h: 48 },
-      { id: 'play', label: 'Playlists', x: 485, y: 154, w: 170, h: 48 },
-      { id: 'reco', label: 'Recommandation', x: 485, y: 258, w: 170, h: 48 },
-      { id: 'pg', label: 'PostgreSQL', x: 790, y: 95, w: 180 },
-      { id: 'mongo', label: 'MongoDB', x: 790, y: 210, w: 180 },
+      { id: 'pay', label: 'Achat payé', sub: 'billet, album ou single', x: 20, y: 150, w: 165 },
+      { id: 'api', label: 'API Django', sub: 'billet passé à « payé »', x: 220, y: 150, w: 170, key: true },
+      { id: 'bonus', label: 'Bonus', sub: 'attribution sans doublon', x: 425, y: 40, w: 170 },
+      { id: 'celery', label: 'Celery', sub: 'tâche avec reprises', x: 425, y: 150, w: 170 },
+      { id: 'scan', label: 'Scan à l’entrée', sub: 'une seule fois par billet', x: 425, y: 262, w: 170 },
+      { id: 'pdf', label: 'Rendu PDF', sub: 'Chromium · QR intégré', x: 640, y: 150, w: 160 },
+      { id: 'mail', label: 'E-mail', sub: 'billet en PDF', x: 845, y: 150, w: 135 },
     ],
-    frames: [{ id: 'domains', label: 'Domaines de l’API', x: 465, y: 22, w: 210, h: 305 }],
-    edges: [['req', 'api'], ['api', 'stream'], ['api', 'play'], ['api', 'reco'], ['domains', 'pg'], ['domains', 'mongo']],
+    edges: [['pay', 'api'], ['api', 'bonus'], ['api', 'celery'], ['api', 'scan'], ['celery', 'pdf'], ['pdf', 'mail']],
   },
 
   'graph-rag-veille': {
