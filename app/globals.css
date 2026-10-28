@@ -2,30 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* accent = ambre (requête, mise en avant), signal = bleu (données, voisins) */
+/* Palette analogique : papier écru, encre brune, une seule teinte crue (rouge minium) */
 :root {
-  --paper: 246 244 238;
-  --surface: 255 255 255;
-  --ink: 20 24 36;
-  --muted: 84 90 104;
-  --line: 218 214 204;
-  --accent: 154 91 0;
-  --accent-soft: 246 232 205;
-  --signal: 31 58 140;
-  --positive: 21 115 71;
+  --paper: 237 232 222;
+  --surface: 245 241 233;
+  --ink: 26 23 18;
+  --muted: 102 95 83;
+  --line: 202 193 177;
+  --accent: 196 56 24;
+  --accent-soft: 240 214 198;
+  --signal: 84 90 52;
+  --positive: 70 110 48;
+  --raw: 26 23 18;
+  --raw-ink: 237 232 222;
   color-scheme: light;
 }
 
+/* « Chambre noire » : même logique, inversée */
 .dark {
-  --paper: 8 11 19;
-  --surface: 15 19 30;
-  --ink: 238 234 225;
-  --muted: 150 156 172;
-  --line: 36 42 58;
-  --accent: 245 186 80;
-  --accent-soft: 52 40 18;
-  --signal: 122 162 255;
-  --positive: 110 200 150;
+  --paper: 22 20 17;
+  --surface: 32 29 25;
+  --ink: 236 230 218;
+  --muted: 162 154 140;
+  --line: 60 55 47;
+  --accent: 234 98 60;
+  --accent-soft: 62 33 22;
+  --signal: 176 182 126;
+  --positive: 150 190 110;
+  --raw: 237 232 222;
+  --raw-ink: 26 23 18;
   color-scheme: dark;
 }
 
@@ -34,6 +39,7 @@ html {
 }
 
 body {
+  overflow-x: clip;
   background: rgb(var(--paper));
   color: rgb(var(--ink));
   font-feature-settings: 'kern';
@@ -46,7 +52,8 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 60;
-  opacity: 0.05;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 

@@ -20,6 +20,8 @@ const config: Config = {
         'accent-soft': token('accent-soft'),
         signal: token('signal'),
         positive: token('positive'),
+        raw: token('raw'),
+        'raw-ink': token('raw-ink'),
       },
       fontFamily: {
         serif: ['var(--font-serif)', 'Georgia', 'serif'],

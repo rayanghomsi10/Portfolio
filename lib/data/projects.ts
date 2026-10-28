@@ -21,6 +21,8 @@ export interface Project {
   stack: string[]
   repoUrl?: string
   featured?: boolean
+  /** Photos de carnets, croquis, tableaux blancs : fichiers à placer dans public/ */
+  media?: { src: string; alt: string; caption: string }[]
 }
 
 export const projects: Project[] = [
@@ -59,21 +61,6 @@ export const projects: Project[] = [
     stack: ['LangChain', 'ChromaDB', 'Ollama', 'Llama 3.1 8B', 'FastAPI', 'RAGAS', 'MLflow', 'Langfuse', 'Docker', 'GitHub Actions', 'TRL', 'QLoRA'],
     repoUrl: 'https://github.com/rayanghomsi10/Assistant-RAG',
     featured: true,
-  },
-  {
-    slug: 'graph-rag-veille',
-    title: 'Graph-RAG pour la veille technologique',
-    kind: 'Projet d’entreprise, MS SIO CentraleSupélec',
-    period: 'Depuis octobre 2026',
-    status: 'En cours',
-    domain: 'IA générative',
-    summary:
-      'Preuve de concept de veille et de co-réflexion fondée sur un graphe de connaissances couplé à un LLM, à budget nul.',
-    context:
-      'Projet mené pour un client industriel dans le cadre du Mastère Spécialisé SIO. Il s’agit de construire une preuve de concept de veille technologique et de co-réflexion fondée sur le Graph-RAG, sans budget d’infrastructure.',
-    contributions: ['Projet en cours : le détail sera publié à mesure de l’avancement.'],
-    results: [],
-    stack: ['Graph-RAG', 'Graphe de connaissances', 'LLM'],
   },
   {
     slug: 'jumeau-numerique-extrudeuse',
@@ -122,6 +109,21 @@ export const projects: Project[] = [
       { label: 'Sources intégrées', value: '5' },
     ],
     stack: ['PySpark', 'Apache NiFi', 'Sqoop', 'HDFS', 'Hive', 'Airflow', 'Random Forest', 'Gradient Boosting'],
+  },
+  {
+    slug: 'graph-rag-veille',
+    title: 'Graph-RAG pour la veille technologique',
+    kind: 'Projet d’entreprise, MS SIO CentraleSupélec',
+    period: 'Depuis octobre 2026',
+    status: 'En cours',
+    domain: 'IA générative',
+    summary:
+      'Preuve de concept de veille et de co-réflexion fondée sur un graphe de connaissances couplé à un LLM, à budget nul.',
+    context:
+      'Projet mené pour un client industriel dans le cadre du Mastère Spécialisé SIO. Il s’agit de construire une preuve de concept de veille technologique et de co-réflexion fondée sur le Graph-RAG, sans budget d’infrastructure.',
+    contributions: ['Projet en cours : le détail sera publié à mesure de l’avancement.'],
+    results: [],
+    stack: ['Graph-RAG', 'Graphe de connaissances', 'LLM'],
   },
   {
     slug: 'tsa-innovlab',

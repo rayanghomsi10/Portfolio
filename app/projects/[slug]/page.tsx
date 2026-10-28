@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Github } from 'lucide-react'
 import EvalReport from '@/components/ui/EvalReport'
 import RagPipeline from '@/components/ui/RagPipeline'
+import HeroField from '@/components/hero/HeroField'
+import Image from 'next/image'
 import Reveal from '@/components/ui/Reveal'
 import { getProject, projects } from '@/lib/data/projects'
 
@@ -98,10 +100,37 @@ export default async function ProjectPage({ params }: Params) {
       </div>
 
       {project.slug === 'assistant-rag' && (
-        <Reveal className="mt-20 rounded-lg border border-line bg-surface/40 p-5 sm:p-8">
-          <p className="eyebrow mb-6">Pipeline</p>
-          <RagPipeline />
-        </Reveal>
+        <>
+          <Reveal className="mt-20 border border-ink bg-surface p-5 sm:p-8">
+            <p className="eyebrow mb-6">Pipeline</p>
+            <RagPipeline />
+          </Reveal>
+          <Reveal className="mt-6 grid gap-6 md:grid-cols-12">
+            <figure className="relative h-[420px] overflow-hidden border border-ink bg-surface md:col-span-8">
+              <HeroField />
+            </figure>
+            <figcaption className="self-end text-sm leading-relaxed text-muted md:col-span-4">
+              <span className="eyebrow mb-3 block">Figure · récupération</span>
+              Illustration de l’étape de récupération : chaque point est un passage, regroupé par thème. Bougez la souris : elle joue la requête, et ses sept plus proches voisins s’allument. Schéma pédagogique, pas les vrais embeddings du projet.
+            </figcaption>
+          </Reveal>
+        </>
+      )}
+
+      {project.media && project.media.length > 0 && (
+        <section className="mt-20">
+          <h2 className="eyebrow mb-6">Notes de travail</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {project.media.map((m, i) => (
+              <figure key={m.src} className={i % 2 ? 'md:mt-16 md:rotate-[0.6deg]' : 'md:-rotate-[0.6deg]'}>
+                <div className="relative aspect-[4/3] overflow-hidden border border-ink">
+                  <Image src={m.src} alt={m.alt} fill className="object-cover" />
+                </div>
+                <figcaption className="mt-3 font-mono text-xs text-muted">{m.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
       )}
 
       <Link

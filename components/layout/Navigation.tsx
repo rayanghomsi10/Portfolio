@@ -33,7 +33,7 @@ export default function Navigation() {
         isScrolled ? 'border-b border-line bg-paper/80 backdrop-blur-md' : 'border-b border-transparent'
       )}
     >
-      <div className="mx-auto flex max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-3 sm:px-8">
         <Link href="/" className="group flex items-baseline gap-2">
           <span className="font-serif text-2xl leading-none">Rayan Ghomsi Talla</span>
           <span className="hidden font-mono text-[11px] text-muted transition-colors group-hover:text-accent sm:inline">
