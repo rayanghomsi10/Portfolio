@@ -9,7 +9,6 @@ import MetricFlip from '@/components/ui/MetricFlip'
 import Reveal from '@/components/ui/Reveal'
 import HeroField from '@/components/hero/HeroField'
 import Motif from '@/components/universe/Motif'
-import UniverseTransition from '@/components/universe/UniverseTransition'
 import { getProject, projects } from '@/lib/data/projects'
 
 type Params = { params: Promise<{ slug: string }> }
@@ -36,7 +35,6 @@ export default async function ProjectPage({ params }: Params) {
 
   return (
     <div data-universe={project.universe}>
-      <UniverseTransition kind={project.universe} index={index} title={project.title} />
 
       {/* En-tête */}
       <header className="relative overflow-hidden border-b border-ink">

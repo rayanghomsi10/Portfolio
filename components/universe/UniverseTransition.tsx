@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Universe } from '@/lib/data/projects'
 import Motif from './Motif'
@@ -12,9 +13,14 @@ const EASE = [0.76, 0, 0.24, 1] as const
  */
 export default function UniverseTransition({ kind, index, title }: { kind: Universe; index: number; title: string }) {
   const reduce = useReducedMotion()
-  if (reduce) return null
+  // Retiré du DOM une fois le panneau sorti : il ne peut plus réapparaître
+  const [done, setDone] = useState(false)
+  if (reduce || done) return null
   return (
     <motion.div
+      // Rendu hors de la page : l'univers est porté par le panneau lui-même
+      data-universe={kind}
+      onAnimationComplete={() => setDone(true)}
       className="pointer-events-none fixed inset-0 z-[80] overflow-hidden bg-paper"
       initial={{ clipPath: 'inset(0 0 0 0)' }}
       animate={{ clipPath: 'inset(0 0 0 100%)' }}
