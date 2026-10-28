@@ -44,11 +44,12 @@ export const experiences: Experience[] = [
     location: 'Douala',
     period: 'Mai 2025 – avr. 2026',
     points: [
-      'Responsable de l’ensemble du backend de la plateforme.',
-      'API REST Django pour le streaming, les playlists et la recommandation musicale.',
-      'Bases PostgreSQL et MongoDB.',
+      'Billetterie d’événements : billets avec code QR, billets nominatifs, scan unique à l’entrée.',
+      'Système de bonus liés aux achats, sans doublon et avec expiration automatique.',
+      'Envoi des billets par e-mail : tâches Celery, billet rendu en PDF par un service Chromium.',
+      'Mise en place de routes de l’API REST Django.',
     ],
-    stack: ['Django', 'PostgreSQL', 'MongoDB'],
+    stack: ['Django', 'Django REST Framework', 'Celery', 'MySQL'],
     projectSlug: 'colorfol-backend',
   },
   {
@@ -108,7 +109,7 @@ export const skillGroups = [
   { label: 'Langages', items: ['Python', 'SQL', 'Bash', 'JavaScript', 'PHP'] },
   { label: 'Bases de données', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Hive', 'Elasticsearch'] },
   { label: 'BI & visualisation', items: ['Power BI', 'Tableau', 'Plotly', 'Superset'] },
-  { label: 'Web & API', items: ['FastAPI', 'Django', 'NestJS', 'Laravel'] },
+  { label: 'Web & API', items: ['FastAPI', 'Django', 'Celery', 'NestJS', 'Laravel'] },
 ]
 
 export const certifications = [
