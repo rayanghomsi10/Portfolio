@@ -8,7 +8,6 @@ import {
   experiences,
   languages,
   profile,
-  skillGroups,
 } from '@/lib/data/experience'
 import Reveal from '@/components/ui/Reveal'
 
@@ -156,28 +155,6 @@ export function Timeline() {
           </ul>
         </Reveal>
       </aside>
-    </div>
-  )
-}
-
-export function SkillMatrix() {
-  return (
-    <div className="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-      {skillGroups.map((g, i) => (
-        <div key={g.label} className="group bg-paper p-6 transition-colors hover:bg-surface">
-          <div className="mb-4 flex items-baseline justify-between">
-            <h3 className="font-serif text-2xl leading-tight transition-colors group-hover:text-accent">{g.label}</h3>
-            <span className="font-mono text-[11px] text-muted">{String(i + 1).padStart(2, '0')}</span>
-          </div>
-          <ul className="flex flex-wrap gap-1.5">
-            {g.items.map((s) => (
-              <li key={s} className="chip transition-colors group-hover:border-accent/40">
-                {s}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
     </div>
   )
 }
