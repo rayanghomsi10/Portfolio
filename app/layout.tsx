@@ -8,7 +8,13 @@ import { ThemeProvider, themeInitScript } from '@/components/providers/ThemeProv
 const serif = Fraunces({ subsets: ['latin'], style: ['normal', 'italic'], axes: ['SOFT', 'WONK', 'opsz'], variable: '--font-serif' })
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
+// URL absolue des images de partage : domaine de production Vercel s'il est connu
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : 'http://localhost:3000'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Rayan Ghomsi Talla · Data Scientist',
   description:
     'Data Scientist en Mastère Spécialisé à CentraleSupélec : Machine Learning, IA générative (RAG, Graph-RAG) et évaluation de modèles. Stage de 6 mois à partir d’avril 2027.',
