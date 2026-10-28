@@ -17,7 +17,7 @@ export const usageTargets: UsageTarget[] = [
   { id: 'jumeau', label: 'Jumeau numérique', href: '/projects/jumeau-numerique-extrudeuse', detail: 'Stage de recherche · ICAM Nantes', universe: 'grid' },
   { id: 'churn', label: 'Churn télécom', href: '/projects/churn-telecom', detail: 'Projet · UCAC-ICAM', universe: 'base' },
   { id: 'colorfol', label: 'Colorfol', href: '/projects/colorfol-backend', detail: 'Freelance · billetterie, bonus, envoi des billets', universe: 'wave' },
-  { id: 'orange', label: 'Orange Data AI Factory', href: '/experience', detail: 'Stage · Data Engineering', universe: 'base' },
+  { id: 'orange', label: 'Migration dbt · Orange', href: '/projects/dbt-orange', detail: 'Stage de fin d’études · Data & IA', universe: 'layers' },
   { id: 'web', label: 'Expériences web', href: '/experience', detail: 'Digital Experience, Lab2view · 2023–2024', universe: 'base' },
 ]
 
@@ -39,7 +39,7 @@ export const skillUsage: Record<string, string[]> = {
   'Apache NiFi': ['jumeau', 'churn', 'orange'],
   Airflow: ['churn', 'orange'],
   PySpark: ['churn'],
-  Hadoop: ['churn'],
+  Hadoop: ['churn', 'orange'],
   DBT: ['orange'],
   Airbyte: ['orange'],
   ClickHouse: ['orange'],
@@ -48,6 +48,7 @@ export const skillUsage: Record<string, string[]> = {
   Docker: ['rag'],
   'GitHub Actions': ['rag'],
   'Linux RHEL': ['orange'],
+  Kerberos: ['orange'],
   // Langages
   Python: ['rag', 'jumeau', 'orange'],
   SQL: ['orange'],

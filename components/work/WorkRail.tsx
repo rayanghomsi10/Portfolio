@@ -16,6 +16,7 @@ import Motif from '@/components/universe/Motif'
 const FORMATS: Record<string, string> = {
   'assistant-rag': 'lg:w-[44rem] lg:h-[74vh] lg:self-center',
   'jumeau-numerique-extrudeuse': 'lg:w-[34rem] lg:h-[80vh] lg:self-end',
+  'dbt-orange': 'lg:w-[38rem] lg:h-[66vh] lg:self-start lg:mt-[4vh]',
   'colorfol-backend': 'lg:w-[30rem] lg:h-[60vh] lg:self-start lg:mt-[8vh]',
   'graph-rag-veille': 'lg:w-[26rem] lg:h-[52vh] lg:self-end lg:mb-[6vh]',
   'churn-telecom': 'lg:w-[28rem] lg:h-[50vh] lg:self-start lg:mt-[14vh]',
@@ -24,7 +25,7 @@ const FORMATS: Record<string, string> = {
 
 function Card({ project, index }: { project: Project; index: number }) {
   const key = project.results[0]
-  const big = project.slug === 'assistant-rag' || project.slug === 'jumeau-numerique-extrudeuse'
+  const big = ['assistant-rag', 'jumeau-numerique-extrudeuse', 'dbt-orange'].includes(project.slug)
   return (
     <Link
       href={`/projects/${project.slug}`}
@@ -110,7 +111,7 @@ export default function WorkRail({ projects }: { projects: Project[] }) {
       <div>
         <p className="font-mono text-[11px] uppercase tracking-wide text-accent">01 — Travaux</p>
         <h2 className="mt-4 font-serif text-5xl font-light leading-[0.9] tracking-[-0.03em] md:text-6xl" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>
-          Six projets, <em>six formats.</em>
+          Sept projets, <em>sept formats.</em>
         </h2>
         <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
           La taille d’une carte dit le poids du projet. Chaque univers a sa couleur. Les chiffres sont mesurés ; ce qui est confidentiel est dit.

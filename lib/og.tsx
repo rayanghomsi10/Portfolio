@@ -13,6 +13,7 @@ export const UNIVERSE_HEX: Record<Universe, string> = {
   mesh: '#2F5D50',
   wave: '#8A5A00',
   grid: '#2B4C6F',
+  layers: '#3E5560',
   base: '#B3321A',
 }
 
@@ -66,6 +67,15 @@ function Motif({ kind, color }: { kind: Universe; color: string }) {
           <line key={`h${i}`} x1="0" y1={i * 40} x2="460" y2={i * 40} stroke={color} strokeWidth={i % 5 ? 0.6 : 1.6} />
         ))}
         <path d="M0 340 C 60 320, 90 180, 150 210 S 240 360, 300 270 S 400 120, 460 190" fill="none" stroke={color} strokeWidth="5" />
+      </svg>
+    )
+  }
+  if (kind === 'layers') {
+    return (
+      <svg width="460" height="500" viewBox="0 0 460 500">
+        {[80, 200, 320].map((y, i) => (
+          <rect key={y} x={40 + i * 40} y={y} width={380 - i * 80} height="80" fill="none" stroke={color} strokeWidth="3" />
+        ))}
       </svg>
     )
   }

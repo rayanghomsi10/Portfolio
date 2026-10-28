@@ -17,7 +17,7 @@ export const nodes: GraphNode[] = [
   { id: 'graph', label: 'Graph-RAG', kind: 'project', href: '/projects/graph-rag-veille' },
   { id: 'churn', label: 'Churn télécom', kind: 'project', href: '/projects/churn-telecom' },
   { id: 'tsa', label: 'TSA InnovLab', kind: 'project', href: '/projects/tsa-innovlab' },
-  { id: 'orange', label: 'Orange Data AI Factory', kind: 'experience', href: '/experience' },
+  { id: 'orange', label: 'Migration dbt · Orange', kind: 'project', href: '/projects/dbt-orange' },
 
   { id: 'cs', label: 'CentraleSupélec', kind: 'place' },
   { id: 'icam', label: 'ICAM Nantes', kind: 'place' },
@@ -38,9 +38,11 @@ export const nodes: GraphNode[] = [
   { id: 'nifi', label: 'NiFi', kind: 'tool' },
   { id: 'airflow', label: 'Airflow', kind: 'tool' },
   { id: 'pyspark', label: 'PySpark', kind: 'tool' },
-  { id: 'dbt', label: 'DBT', kind: 'tool' },
+  { id: 'dbt', label: 'dbt', kind: 'tool' },
   { id: 'airbyte', label: 'Airbyte', kind: 'tool' },
   { id: 'clickhouse', label: 'ClickHouse', kind: 'tool' },
+  { id: 'hive', label: 'Hive', kind: 'tool' },
+  { id: 'kerberos', label: 'Kerberos', kind: 'tool' },
 
   { id: 'r-refus', label: '0 refus à tort', kind: 'result' },
   { id: 'r-cit', label: '100 % citations exactes', kind: 'result' },
@@ -48,6 +50,7 @@ export const nodes: GraphNode[] = [
   { id: 'r-f1', label: 'F1 0,87', kind: 'result' },
   { id: 'r-first', label: '1ère place', kind: 'result' },
   { id: 'r-offline', label: 'Serveurs hors ligne', kind: 'result' },
+  { id: 'r-dbt', label: '22 modèles dbt', kind: 'result' },
 ]
 
 export const links: [string, string][] = [
@@ -57,7 +60,7 @@ export const links: [string, string][] = [
   ['jumeau', 'icam'], ['jumeau', 'xgboost'], ['jumeau', 'nifi'], ['jumeau', 'postgres'], ['jumeau', 'r-rebut'],
   ['colorfol', 'django'], ['colorfol', 'mysql'], ['colorfol', 'celery'],
   ['churn', 'ucac'], ['churn', 'pyspark'], ['churn', 'nifi'], ['churn', 'airflow'], ['churn', 'r-f1'],
-  ['orange', 'dbt'], ['orange', 'airbyte'], ['orange', 'airflow'], ['orange', 'clickhouse'], ['orange', 'r-offline'],
+  ['orange', 'dbt'], ['orange', 'airflow'], ['orange', 'hive'], ['orange', 'kerberos'], ['orange', 'airbyte'], ['orange', 'clickhouse'], ['orange', 'r-offline'], ['orange', 'r-dbt'], ['churn', 'hive'],
   ['tsa', 'r-first'], ['tsa', 'ucac'],
   ['cs', 'ucac'],
 ]
@@ -82,12 +85,12 @@ export const answers: Answer[] = [
     id: 'production',
     question: 'Qu’a-t-il construit en production ?',
     sentences: [
-      { text: 'Chez Orange Data AI Factory, il a déployé DBT et Airbyte sur des serveurs sans accès Internet, et un pipeline Airbyte + Airflow vers ClickHouse.', cite: 1 },
+      { text: 'Chez Orange, il a migré deux pipelines de production vers dbt : 22 modèles testés et orchestrés par Airflow, sur des serveurs sans accès Internet.', cite: 1 },
       { text: 'Chez Colorfol, il a développé la billetterie, les bonus et l’envoi des billets par e-mail d’une plateforme de streaming musical.', cite: 2 },
       { text: 'À l’ICAM Nantes, son jumeau numérique a réduit le taux de rebut de 30 %.', cite: 3 },
     ],
     citations: [
-      { n: 1, label: 'Parcours · Orange', href: '/experience', nodes: ['orange', 'dbt', 'airbyte', 'airflow', 'clickhouse', 'r-offline'] },
+      { n: 1, label: 'Étude de cas · Migration dbt', href: '/projects/dbt-orange', nodes: ['orange', 'dbt', 'airflow', 'hive', 'kerberos', 'r-offline', 'r-dbt'] },
       { n: 2, label: 'Étude de cas · Colorfol', href: '/projects/colorfol-backend', nodes: ['colorfol', 'django', 'mysql', 'celery'] },
       { n: 3, label: 'Étude de cas · Jumeau numérique', href: '/projects/jumeau-numerique-extrudeuse', nodes: ['jumeau', 'icam', 'xgboost', 'r-rebut'] },
     ],

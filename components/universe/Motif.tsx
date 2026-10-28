@@ -4,6 +4,7 @@ import type { Universe } from '@/lib/data/projects'
  * Motif signature de chaque univers, tracé à l'encre de la couleur d'accent courante.
  * fragments : bandes de texte découpées (citations) · mesh : nœuds et relations
  * wave : forme d'onde · grid : papier millimétré et courbe de capteur
+ * layers : strates superposées (couches IT, intermediate, mart)
  */
 export default function Motif({ kind, className = '' }: { kind: Universe; className?: string }) {
   if (kind === 'base') return null
@@ -43,6 +44,19 @@ export default function Motif({ kind, className = '' }: { kind: Universe; classN
             const h = Math.round(10 + Math.abs(Math.sin(i * 0.45) * Math.cos(i * 0.13)) * 150)
             return <rect key={i} x={i * 6.25} y={150 - h / 2} width={2} height={h} />
           })}
+        </g>
+      )}
+
+      {kind === 'layers' && (
+        <g fill="none" stroke={stroke}>
+          {[60, 130, 200].map((y, i) => (
+            <g key={y}>
+              <rect x={30 + i * 30} y={y} width={340 - i * 60} height={46} strokeWidth={1.2} />
+              {Array.from({ length: 8 - i * 2 }).map((_, j) => (
+                <line key={j} x1={50 + i * 30 + j * 40} y1={y + 46} x2={70 + (i + 1) * 30 + j * 32} y2={y + 70} strokeWidth={0.6} />
+              ))}
+            </g>
+          ))}
         </g>
       )}
 
