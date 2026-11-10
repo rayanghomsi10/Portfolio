@@ -9,6 +9,7 @@ import ArchitectureDiagram from '@/components/ui/ArchitectureDiagram'
 import BonusConcurrency from '@/components/ui/BonusConcurrency'
 import RagGuardrails from '@/components/ui/RagGuardrails'
 import DbtAnomalies from '@/components/ui/DbtAnomalies'
+import GraphAnchoring from '@/components/ui/GraphAnchoring'
 import { architectures } from '@/lib/data/architectures'
 import MetricFlip from '@/components/ui/MetricFlip'
 import Reveal from '@/components/ui/Reveal'
@@ -131,6 +132,7 @@ export default async function ProjectPage({ params }: Params) {
               <ArchitectureDiagram id={project.slug} />
               {project.slug === 'colorfol-backend' && <BonusConcurrency />}
               {project.slug === 'dbt-orange' && <DbtAnomalies />}
+              {project.slug === 'graph-rag-veille' && <GraphAnchoring />}
             </div>
           )
         )}

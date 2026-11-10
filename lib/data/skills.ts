@@ -13,7 +13,7 @@ export interface UsageTarget {
 
 export const usageTargets: UsageTarget[] = [
   { id: 'rag', label: 'Assistant-RAG', href: '/projects/assistant-rag', detail: 'Projet personnel · IA générative', universe: 'fragments' },
-  { id: 'graph', label: 'Graph-RAG', href: '/projects/graph-rag-veille', detail: 'Projet d’entreprise · MS SIO', universe: 'mesh' },
+  { id: 'graph', label: 'Graph-RAG', href: '/projects/graph-rag-veille', detail: 'Projet personnel · veille sourcée', universe: 'mesh' },
   { id: 'jumeau', label: 'Jumeau numérique', href: '/projects/jumeau-numerique-extrudeuse', detail: 'Stage de recherche · ICAM Nantes', universe: 'grid' },
   { id: 'churn', label: 'Churn télécom', href: '/projects/churn-telecom', detail: 'Projet · UCAC-ICAM', universe: 'base' },
   { id: 'colorfol', label: 'Colorfol', href: '/projects/colorfol-backend', detail: 'Freelance · billetterie, bonus, envoi des billets', universe: 'wave' },
@@ -26,14 +26,15 @@ export const skillUsage: Record<string, string[]> = {
   XGBoost: ['jumeau'],
   // Statistiques
   Régression: ['jumeau'],
-  'IC par bootstrap': ['rag'],
-  'Comparaisons appariées': ['rag'],
+  'IC par bootstrap': ['rag', 'graph'],
+  'Comparaisons appariées': ['rag', 'graph'],
   // IA générative
   'RAG / Graph-RAG': ['rag', 'graph'],
   LangChain: ['rag'],
   ChromaDB: ['rag'],
   RAGAS: ['rag'],
-  Ollama: ['rag'],
+  Ollama: ['rag', 'graph'],
+  LangGraph: ['graph'],
   'DPO (TRL, QLoRA)': ['rag'],
   // Big Data & ETL
   'Apache NiFi': ['jumeau', 'churn', 'orange'],
@@ -45,12 +46,12 @@ export const skillUsage: Record<string, string[]> = {
   ClickHouse: ['orange'],
   // MLOps & DevOps
   MLflow: ['rag'],
-  Docker: ['rag'],
-  'GitHub Actions': ['rag'],
+  Docker: ['rag', 'graph'],
+  'GitHub Actions': ['rag', 'graph'],
   'Linux RHEL': ['orange'],
   Kerberos: ['orange'],
   // Langages
-  Python: ['rag', 'jumeau', 'orange'],
+  Python: ['rag', 'graph', 'jumeau', 'orange'],
   SQL: ['orange'],
   Bash: ['orange'],
   PHP: ['web'],
@@ -58,8 +59,9 @@ export const skillUsage: Record<string, string[]> = {
   PostgreSQL: ['jumeau'],
   MySQL: ['colorfol', 'web'],
   Hive: ['churn', 'orange'],
+  Neo4j: ['graph'],
   // Web & API
-  FastAPI: ['rag'],
+  FastAPI: ['rag', 'graph'],
   Django: ['colorfol'],
   Celery: ['colorfol'],
   Laravel: ['web'],

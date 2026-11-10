@@ -30,6 +30,8 @@ export const nodes: GraphNode[] = [
   { id: 'fastapi', label: 'FastAPI', kind: 'tool' },
   { id: 'mlflow', label: 'MLflow', kind: 'tool' },
   { id: 'kg', label: 'Graphe de connaissances', kind: 'tool' },
+  { id: 'neo4j', label: 'Neo4j', kind: 'tool' },
+  { id: 'langgraph', label: 'LangGraph', kind: 'tool' },
   { id: 'django', label: 'Django', kind: 'tool' },
   { id: 'postgres', label: 'PostgreSQL', kind: 'tool' },
   { id: 'mysql', label: 'MySQL', kind: 'tool' },
@@ -56,7 +58,7 @@ export const nodes: GraphNode[] = [
 export const links: [string, string][] = [
   ['rag', 'langchain'], ['rag', 'chroma'], ['rag', 'llama'], ['rag', 'ragas'], ['rag', 'fastapi'], ['rag', 'mlflow'],
   ['rag', 'r-refus'], ['rag', 'r-cit'],
-  ['graph', 'kg'], ['graph', 'cs'],
+  ['graph', 'kg'], ['graph', 'neo4j'], ['graph', 'langgraph'], ['graph', 'cs'],
   ['jumeau', 'icam'], ['jumeau', 'xgboost'], ['jumeau', 'nifi'], ['jumeau', 'postgres'], ['jumeau', 'r-rebut'],
   ['colorfol', 'django'], ['colorfol', 'mysql'], ['colorfol', 'celery'],
   ['churn', 'ucac'], ['churn', 'pyspark'], ['churn', 'nifi'], ['churn', 'airflow'], ['churn', 'r-f1'],
@@ -113,12 +115,12 @@ export const answers: Answer[] = [
     question: 'Que fait-il en IA générative ?',
     sentences: [
       { text: 'Assistant-RAG répond sur la documentation de dbt et d’Airflow en citant ses sources, et refuse les questions hors périmètre.', cite: 1 },
-      { text: 'Avec Graph-RAG, il construit une preuve de concept de veille technologique fondée sur un graphe de connaissances, pour un client industriel.', cite: 2 },
+      { text: 'Son Graph-RAG de veille, entièrement local, garde une phrase-preuve pour chaque relation du graphe et refuse de répondre quand les preuves manquent.', cite: 2 },
       { text: 'Un pipeline DPO est écrit ; il n’est pas encore évalué.', cite: 1 },
     ],
     citations: [
       { n: 1, label: 'Étude de cas · Assistant-RAG', href: '/projects/assistant-rag', nodes: ['rag', 'langchain', 'chroma', 'llama', 'fastapi'] },
-      { n: 2, label: 'Étude de cas · Graph-RAG', href: '/projects/graph-rag-veille', nodes: ['graph', 'kg', 'cs'] },
+      { n: 2, label: 'Étude de cas · Graph-RAG', href: '/projects/graph-rag-veille', nodes: ['graph', 'kg', 'neo4j', 'langgraph'] },
     ],
   },
 ]

@@ -104,11 +104,11 @@ export const education = [
 export const skillGroups = [
   { label: 'Machine Learning / Deep Learning', items: ['Scikit-learn', 'XGBoost', 'TensorFlow', 'Keras', 'PyTorch', 'Dataiku'] },
   { label: 'Statistiques', items: ['Régression', 'IC par bootstrap', 'Comparaisons appariées'] },
-  { label: 'IA générative', items: ['RAG / Graph-RAG', 'LangChain', 'ChromaDB', 'RAGAS', 'Ollama', 'DPO (TRL, QLoRA)', 'n8n multi-agents'] },
+  { label: 'IA générative', items: ['RAG / Graph-RAG', 'LangChain', 'LangGraph', 'ChromaDB', 'RAGAS', 'Ollama', 'DPO (TRL, QLoRA)', 'n8n multi-agents'] },
   { label: 'Big Data & ETL', items: ['Apache NiFi', 'Airflow', 'PySpark', 'Hadoop', 'DBT', 'Airbyte', 'ClickHouse'] },
   { label: 'MLOps & DevOps', items: ['MLflow', 'Docker', 'GitHub Actions', 'Git', 'Linux RHEL', 'Kerberos'] },
   { label: 'Langages', items: ['Python', 'SQL', 'Bash', 'JavaScript', 'PHP'] },
-  { label: 'Bases de données', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Hive', 'Elasticsearch'] },
+  { label: 'Bases de données', items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Hive', 'Neo4j', 'Elasticsearch'] },
   { label: 'BI & visualisation', items: ['Power BI', 'Tableau', 'Plotly', 'Superset'] },
   { label: 'Web & API', items: ['FastAPI', 'Django', 'Celery', 'NestJS', 'Laravel'] },
 ]
