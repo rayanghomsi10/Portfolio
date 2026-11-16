@@ -8,7 +8,7 @@ import { useEffect, useRef } from 'react'
  * comme l'étape de récupération d'un RAG. Sans pointeur, la requête dérive seule.
  */
 
-const TOPICS = ['dbt', 'Airflow', 'PySpark', 'XGBoost', 'capteurs IoT', 'LangChain', 'ClickHouse', 'RAGAS', 'NiFi', 'FastAPI']
+const TOPICS = ['dbt', 'Airflow', 'PySpark', 'XGBoost', 'capteurs IoT', 'LangChain', 'Hive', 'RAGAS', 'NiFi', 'FastAPI']
 const K = 7
 
 interface Point {

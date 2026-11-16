@@ -128,7 +128,7 @@ export const projects: Project[] = [
       'Orchestration Airflow avec astronomer-cosmos : un groupe de tâches par couche, chacun avec son profil de ressources Spark, et renouvellement du ticket Kerberos ; code versionné sur Azure DevOps.',
       'Installation hors ligne sur des serveurs RHEL isolés d’Internet : paquets préparés sur un poste connecté puis transférés par SFTP, versions de dbt choisies pour rester compatibles avec Spark 2.3.2.',
       'Benchmark sur sept dimensions (maintenabilité, testabilité, observabilité, lineage, time-to-insight, versioning, onboarding).',
-      'Autres travaux du stage : pipeline Airbyte + Airflow vers ClickHouse et suivi automatisé des transactions AFD (Bash, Hive SQL, Python) avec rapports HTML par e-mail.',
+      'Autres travaux du stage : déploiement d’Airbyte et suivi automatisé des transactions AFD (Bash, Hive SQL, Python) avec rapports HTML par e-mail.',
     ],
     results: [
       { label: 'Modèles migrés', value: '22', note: 'Souscriptions (10) et SMS Usage (12), sur données de production' },

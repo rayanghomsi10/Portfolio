@@ -43,7 +43,6 @@ export const skillUsage: Record<string, string[]> = {
   Hadoop: ['churn', 'orange'],
   DBT: ['orange'],
   Airbyte: ['orange'],
-  ClickHouse: ['orange'],
   // MLOps & DevOps
   MLflow: ['rag'],
   Docker: ['rag', 'graph'],
