@@ -42,7 +42,6 @@ export const nodes: GraphNode[] = [
   { id: 'pyspark', label: 'PySpark', kind: 'tool' },
   { id: 'dbt', label: 'dbt', kind: 'tool' },
   { id: 'airbyte', label: 'Airbyte', kind: 'tool' },
-  { id: 'clickhouse', label: 'ClickHouse', kind: 'tool' },
   { id: 'hive', label: 'Hive', kind: 'tool' },
   { id: 'kerberos', label: 'Kerberos', kind: 'tool' },
 
@@ -62,7 +61,7 @@ export const links: [string, string][] = [
   ['jumeau', 'icam'], ['jumeau', 'xgboost'], ['jumeau', 'nifi'], ['jumeau', 'postgres'], ['jumeau', 'r-rebut'],
   ['colorfol', 'django'], ['colorfol', 'mysql'], ['colorfol', 'celery'],
   ['churn', 'ucac'], ['churn', 'pyspark'], ['churn', 'nifi'], ['churn', 'airflow'], ['churn', 'r-f1'],
-  ['orange', 'dbt'], ['orange', 'airflow'], ['orange', 'hive'], ['orange', 'kerberos'], ['orange', 'airbyte'], ['orange', 'clickhouse'], ['orange', 'r-offline'], ['orange', 'r-dbt'], ['churn', 'hive'],
+  ['orange', 'dbt'], ['orange', 'airflow'], ['orange', 'hive'], ['orange', 'kerberos'], ['orange', 'airbyte'], ['orange', 'r-offline'], ['orange', 'r-dbt'], ['churn', 'hive'],
   ['tsa', 'r-first'], ['tsa', 'ucac'],
   ['cs', 'ucac'],
 ]
